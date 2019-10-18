@@ -1,0 +1,34 @@
+<script>var data = "<%= dados %>";
+    console.log(data);
+
+</script>
+
+
+<form>
+    <fieldset>
+
+
+        <% function printar(item, indice) { %>
+
+        <label for="name">Título:</label>
+        <%= item.title %>
+        <br>
+        <label for="email">Corpo:</label>
+        <%= item.body %>
+        <br>
+        <label for="message">Data:</label>
+        <%= item.data %>
+        <br>
+        <label for="id">User:</label>
+        <%= item.user_id %>
+        <br>
+
+        <% } %>
+
+
+        <% dados.forEach(printar); %>
+
+
+
+    </fieldset>
+</form>
