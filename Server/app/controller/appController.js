@@ -3,13 +3,13 @@
 var User = require('../model/appModel.js');
 
 exports.listAllUsers = function (req, res) {
-    User.getAllUsers(function (err, task) {
+    User.getAllUsers(function (err, user) {
 
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', task);
-        res.send(task);
+        console.log('res', user);
+        res.send(user);
     });
 };
 
@@ -17,7 +17,7 @@ exports.createUser = function (req, res) {
     var newUser = new User(req.body);
 
     //handles null error 
-    if (!newUser.name || !newUser.password || !newUser.profile || !newUser.telNumber || !newUser.address) {
+    if (!newUser.usu_nome || !newUser.usu_senha || !newUser.usu_perfil || !newUser.usu_telefone || !newUser.usu_endereco) {
 
         res.status(400).send({ error: true, message: 'Please provide name/password/profile/telNumber/address' });
 
@@ -33,7 +33,8 @@ exports.createUser = function (req, res) {
 
 
 exports.readUser = function (req, res) {
-    Task.getTaskById(req.params.userId, function (err, user) {
+
+    User.getUserById(req.params.usuarioId, function (err, user) {
         if (err)
             res.send(err);
         res.json(user);
@@ -42,7 +43,10 @@ exports.readUser = function (req, res) {
 
 
 exports.updateUser = function (req, res) {
-    User.updateById(req.params.userId, new User(req.body), function (err, user) {
+
+    var testUser = new User(req.body);
+
+    User.updateById(req.params.usuarioId, testUser, function (err, user) {
         if (err)
             res.send(err);
         res.json(user);
@@ -50,12 +54,12 @@ exports.updateUser = function (req, res) {
 };
 
 
-exports.deleteTask = function (req, res) {
+exports.deleteUser = function (req, res) {
 
-    User.remove(req.params.userId, function (err, user) {
+    User.remove(req.params.usuarioId, function (err, user) {
         if (err)
             res.send(err);
-        res.json({ message: 'Task successfully deleted' });
+        res.json({ message: 'User successfully deleted' });
     });
 
 };

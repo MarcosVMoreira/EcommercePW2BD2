@@ -1,16 +1,16 @@
 'use strict';
 module.exports = function (app) {
-    var usuario = require('../controller/usuarioController');
+    var user = require('../controller/appController');
 
     // todoList Routes
     app.route('/usuario')
-        .get(usuario.listarTodosUsuarios)
-        .post(usuario.cadastrarUsuario);
+        .get(user.listAllUsers)
+        .post(user.createUser);
 
     app.route('/usuario/:usuarioId')
-        .get(usuario.listaUsuario)
-        .put(usuario.atualizaUsuario)
-        .delete(usuario.removeUsuario);
+        .get(user.readUser)
+        .put(user.updateUser)
+        .delete(user.deleteUser);
 };
 
 
