@@ -56,7 +56,7 @@ User.getAllUsers = function (result) {
     });
 };
 
-User.updateById = function (usu_id, userParam, result) {
+User.updateUserById = function (usu_id, userParam, result) {
 
     console.log("valor "+userParam.usu_nome)
 
@@ -71,7 +71,7 @@ User.updateById = function (usu_id, userParam, result) {
     });
 };
 
-User.remove = function (id, result) {
+User.removeUser = function (id, result) {
     sql.query("DELETE FROM usuario WHERE usu_id = ?", [id], function (err, res) {
 
         if (err) {
@@ -86,3 +86,4 @@ User.remove = function (id, result) {
 };
 
 module.exports = User;
+

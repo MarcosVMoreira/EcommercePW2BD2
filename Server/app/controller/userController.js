@@ -1,6 +1,6 @@
 'use strict';
 
-var User = require('../model/appModel.js');
+var User = require('../model/userModel.js');
 
 exports.listAllUsers = function (req, res) {
     User.getAllUsers(function (err, user) {
@@ -39,6 +39,7 @@ exports.readUser = function (req, res) {
             res.send(err);
         res.json(user);
     });
+
 };
 
 
@@ -46,21 +47,24 @@ exports.updateUser = function (req, res) {
 
     var testUser = new User(req.body);
 
-    User.updateById(req.params.usuarioId, testUser, function (err, user) {
+    User.updateUserById(req.params.usuarioId, testUser, function (err, user) {
         if (err)
             res.send(err);
         res.json(user);
     });
+
 };
 
 
 exports.deleteUser = function (req, res) {
 
-    User.remove(req.params.usuarioId, function (err, user) {
+    User.removeUser(req.params.usuarioId, function (err, user) {
         if (err)
             res.send(err);
         res.json({ message: 'User successfully deleted' });
     });
 
 };
+
+
 
