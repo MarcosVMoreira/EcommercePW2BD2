@@ -60,6 +60,8 @@ exports.updateProduct = function (req, res) {
 
 exports.deleteProduct = function (req, res) {
 
+    console.log("Product id "+req.params.produtoId);
+
     Product.removeProduct(req.params.produtoId, function (err, product) {
         if (err)
             res.send(err);

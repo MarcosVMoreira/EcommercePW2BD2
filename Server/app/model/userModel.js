@@ -60,7 +60,11 @@ User.updateUserById = function (usu_id, userParam, result) {
 
     console.log("valor "+userParam.usu_nome)
 
-    sql.query("UPDATE usuario SET usu_nome = ? WHERE usu_id = ?", [userParam.usu_nome, usu_id], function (err, res) {
+    sql.query("UPDATE usuario SET usu_nome = ?, usu_senha = ?, usu_perfil = ?, usu_email = ?, usu_telefone = ?, "+
+    "usu_endereco = ? , usu_prod = ?"+
+    " WHERE usu_id = ?", [userParam.usu_nome, userParam.usu_senha, userParam.usu_perfil,
+        userParam.usu_email, userParam.usu_telefone, userParam.usu_endereco, userParam.usu_prod,
+        usu_id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

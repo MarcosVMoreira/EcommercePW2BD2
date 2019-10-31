@@ -52,11 +52,10 @@ Product.getAllProducts = function (result) {
     });
 };
 
-Product.updateProductById = function (usu_id, productParam, result) {
+Product.updateProductById = function (prod_id, productParam, result) {
 
-    console.log("valor "+productParam.usu_nome)
-
-    sql.query("UPDATE usuario SET usu_nome = ? WHERE usu_id = ?", [productParam.usu_nome, usu_id], function (err, res) {
+    sql.query("UPDATE produto SET prod_nome = ?, prod_descricao = ?, prod_preco = ? WHERE prod_id = ?",
+     [productParam.prod_nome, productParam.prod_descricao, productParam.prod_preco, prod_id], function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -65,10 +64,12 @@ Product.updateProductById = function (usu_id, productParam, result) {
             result(null, res);
         }
     });
+
 };
 
-Product.removeProduct = function (id, result) {
-    sql.query("DELETE FROM produto WHERE prod_id = ?", [id], function (err, res) {
+Product.removeProduct = function (prod_id, result) {
+
+    sql.query("DELETE FROM produto WHERE prod_id = ?", [prod_id], function (err, res) {
 
         if (err) {
             console.log("error: ", err);
