@@ -89,5 +89,19 @@ User.removeUser = function (id, result) {
     });
 };
 
+User.findUser = function (emailUsuario, result) {
+    sql.query("SELECT usu_nome, usu_senha FROM usuario WHERE usu_email = ?", [emailUsuario], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        }
+        else {
+
+            result(null, res);
+
+        }
+    });
+};
+
 module.exports = User;
 

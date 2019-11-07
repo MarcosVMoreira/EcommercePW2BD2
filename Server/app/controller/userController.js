@@ -66,5 +66,18 @@ exports.deleteUser = function (req, res) {
 
 };
 
+exports.findUser = function (req, res) {
+
+    User.findUser(req.params.emailUsuario, function (err, user) {
+        if (err)
+            res.send(err);
+
+        user == "" ? res.json({ message: 'User not found' }) : res.json(user);;
+
+    });
+
+};
+
+
 
 
