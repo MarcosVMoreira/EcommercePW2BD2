@@ -1,0 +1,45 @@
+/* HEADER */
+.header {
+  background-color: #353A40;
+}
+
+img:first-child {
+  width: 7rem;
+  height: 7rem;
+}
+
+.input-group {
+  width: 22rem;
+}
+
+.form-control {
+  font-size: 1.5rem;
+  color: #353A40 !important;
+}
+
+.list-group-item {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #353A40 !important;
+}
+
+/* NAVBAR */
+li a {
+  font-size: 1.8rem;
+  color: white !important;
+  transition: 1s;
+}
+
+li a:hover {
+  background-color: white;
+  color: #353A40 !important;
+}
+
+.navbar {
+  padding-bottom: 0.1%;
+}
+
+.icones {
+  width: 50px !important;
+  height: 50px !important;
+}
