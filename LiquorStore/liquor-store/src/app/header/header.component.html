@@ -1,7 +1,7 @@
 <div class="header p-3">
   <div class="container">
     <div class="d-flex flex-row justify-content-around align-items-center">
-      <img src="../../assets/img/logo.png">
+      <a routerLink="/home"><img src="../../assets/img/logo.png"></a>
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Buscar">
         <div class="input-group-append">
@@ -9,9 +9,9 @@
         </div>
       </div>
       <ul class="list-group list-group-horizontal text-center">
-          <a class="list-group-item list-group-item-action" href="#">Carrinho</a>
-          <a class="list-group-item list-group-item-action" href="#">Entrar</a>
-          <a class="list-group-item list-group-item-action" href="#">Cadastrar</a>
+        <a class="list-group-item list-group-item-action" href="#">Carrinho</a>
+        <a class="list-group-item list-group-item-action" href="#">Entrar</a>
+        <a class="list-group-item list-group-item-action" href="#">Cadastrar</a>
       </ul>
     </div>
   </div>
@@ -57,3 +57,4 @@
     </ul>
   </div>
 </nav>
+<app-home-page></app-home-page>

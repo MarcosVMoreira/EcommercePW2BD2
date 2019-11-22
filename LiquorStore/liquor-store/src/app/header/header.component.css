@@ -27,12 +27,30 @@ img:first-child {
 li a {
   font-size: 1.8rem;
   color: white !important;
+}
+
+li {
   transition: 1s;
 }
 
-li a:hover {
-  background-color: white;
-  color: #353A40 !important;
+li:hover:nth-child(1) {
+  background-color: #FE0000;
+}
+
+li:hover:nth-child(2) {
+  background-color: #33CC33;
+}
+
+li:hover:nth-child(3) {
+  background-color: #FF0066;
+}
+
+li:hover:nth-child(4) {
+  background-color: #E2A00C;
+}
+
+li:hover:nth-child(5) {
+  background-color: #FE0000;
 }
 
 .navbar {
