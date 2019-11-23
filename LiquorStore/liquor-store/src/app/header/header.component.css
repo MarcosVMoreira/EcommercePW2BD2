@@ -9,23 +9,25 @@ img:first-child {
 }
 
 .input-group {
-  width: 22rem;
+  width: 30%;
 }
 
 .form-control {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #353A40 !important;
 }
 
 .list-group-item {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #353A40 !important;
 }
 
 /* NAVBAR */
 li a {
-  font-size: 1.8rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
   color: white !important;
 }
 
