@@ -7,7 +7,7 @@ var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'ecommerce'
+    database : 'liquorstore'
 });
 
 connection.connect(function(err) {

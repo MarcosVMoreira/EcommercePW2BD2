@@ -14,9 +14,11 @@
       </div>
       <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
         <ul class="list-group list-group-horizontal text-center">
-          <a class="list-group-item list-group-item-action" href="#">Carrinho</a>
-          <a class="list-group-item list-group-item-action" href="#">Entrar</a>
-          <a class="list-group-item list-group-item-action" href="#">Cadastrar</a>
+          <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" href="#">Carrinho</a>
+          <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" href="#">Conta</a>
+          <a *ngIf="this.login.isLogged" (click)="logout()" class="list-group-item list-group-item-action" routerLink="/home">Sair</a>
+          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/login">Entrar</a>
+          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/register">Cadastrar</a>
         </ul>
       </div>
     </div>
@@ -24,7 +26,8 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Alterna navegação">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+    aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbar">
