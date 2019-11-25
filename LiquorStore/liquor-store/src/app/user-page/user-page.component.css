@@ -1,10 +1,10 @@
 .card {
-  width: 50%;
+  width: 60%;
 }
 
 @media (min-width: 768px) and (max-width: 1000px) {
   .card {
-    width: 60%;
+    width: 70%;
   }
 }
 

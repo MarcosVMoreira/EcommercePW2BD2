@@ -36,12 +36,11 @@ exports.readUser = function (req, res) {
             res.send(err);
         res.json(user);
     });
-
 };
 
 exports.updateUser = function (req, res) {
-    var testUser = new User(req.body);
-    User.updateUserById(req.params.usuarioId, testUser, function (err, user) {
+    var newUser = new User(req.body);
+    User.updateUserById(req.params.usuarioId, newUser, function (err, user) {
         if (err)
             res.send(err);
         res.json(user);

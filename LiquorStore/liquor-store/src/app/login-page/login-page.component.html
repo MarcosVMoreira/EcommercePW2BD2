@@ -1,45 +1,50 @@
-<div class="container p-3" [@animate]="currentState">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <div class="row">
-      <div class="offset-2 col-2">
-        <h1>Login</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-4 offset-2">
-        <label>Email</label>
-        <input type="email" class="form-control" formControlName="usu_email"
-          [ngClass]="{ 'is-invalid': submitted && form.usu_email.errors }">
-        <div *ngIf="submitted && form.usu_email.errors" class="invalid-feedback">
-          <div *ngIf="form.usu_email.errors.required">O email é obrigatório</div>
-          <div *ngIf="form.usu_email.errors.invalid">Email ou senha incorretos</div>
+<div class="container p-3 d-flex justify-content-center" [@animate]="currentState">
+  <div class="card p-3">
+    <div class="body">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <div class="row">
+          <div class="col-12">
+            <h1>Login</h1>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-4 offset-2">
-        <label>Senha</label>
-        <input type="password" class="form-control" formControlName="usu_senha"
-          [ngClass]="{ 'is-invalid': submitted && form.usu_senha.errors }">
-        <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
-          <div *ngIf="form.usu_senha.errors.required">A senha é obrigatória</div>
+        <div class="row">
+          <div class="form-group col">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="usu_email"
+              [ngClass]="{ 'is-invalid': submitted && form.usu_email.errors }">
+            <div *ngIf="submitted && form.usu_email.errors" class="invalid-feedback">
+              <div *ngIf="form.usu_email.errors.required">O email é obrigatório</div>
+              <div *ngIf="form.usu_email.errors.invalid">Email ou senha incorretos</div>
+            </div>
+          </div>
         </div>
-        <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
+        <div class="row">
+          <div class="form-group col">
+            <label>Senha</label>
+            <input type="password" class="form-control" formControlName="usu_senha"
+              [ngClass]="{ 'is-invalid': submitted && form.usu_senha.errors }">
+            <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
+              <div *ngIf="form.usu_senha.errors.required">A senha é obrigatória</div>
+            </div>
+            <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="offset-2 col-2">
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="check" formControlName="remember_me">
-          <label class="form-check-label" for="check">Lembrar-me</label>
+        <div class="row">
+          <div class="col">
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="check" formControlName="remember_me">
+              <label class="form-check-label" for="check">Lembrar-me</label>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-4">
+            <button class="btn btn-dark">Entrar</button>
+          </div>
+        </div>
+      </form>
+
     </div>
-    <div class="row">
-      <div class="offset-2 col-2">
-        <button class="btn btn-primary">Entrar</button>
-      </div>
-    </div>
-  </form>
+  </div>
 </div>

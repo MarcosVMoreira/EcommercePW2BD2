@@ -42,7 +42,6 @@ export class LoginPageComponent implements OnInit {
       });
     }
 
-    
     if (localStorage.getItem('Email') !== null) {
       this.loginForm.setValue({
         'usu_email': localStorage.getItem('Email'),

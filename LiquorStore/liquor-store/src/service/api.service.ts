@@ -23,6 +23,16 @@ export class ApiService {
       .pipe(catchError(this.handleError<User>('createUser')));
   }
 
+  getUser(id): Observable<User> {
+    return this.http.get<User>(`${url}/usuario/${id}`)
+      .pipe(catchError(this.handleError<User>(`getUser id = ${id}`)));
+  }
+
+  updateUser(id, user): Observable<any> {
+    return this.http.put(`${url}/usuario/${id}`, user, httpOptions)
+      .pipe(catchError(this.handleError<User>(`updateUser id = ${id}`)));
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
