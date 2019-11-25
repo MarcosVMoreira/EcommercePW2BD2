@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-2 col-sm-4 d-flex justify-content-center">
-        <a routerLink="/home"><img src="../../assets/img/logo.png"></a>
+        <a routerLink="/home">
+          <img src="../../assets/img/logo.png" class="logo">
+        </a>
       </div>
       <div class="col-lg-4 col-sm-8 d-flex justify-content-center">
         <div class="input-group">
@@ -16,9 +18,11 @@
         <ul class="list-group list-group-horizontal text-center">
           <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" href="#">Carrinho</a>
           <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" href="#">Conta</a>
-          <a *ngIf="this.login.isLogged" (click)="logout()" class="list-group-item list-group-item-action" routerLink="/home">Sair</a>
+          <a *ngIf="this.login.isLogged" (click)="logout()" class="list-group-item list-group-item-action"
+            routerLink="/home">Sair</a>
           <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/login">Entrar</a>
-          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/register">Cadastrar</a>
+          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action"
+            routerLink="/register">Cadastrar</a>
         </ul>
       </div>
     </div>
@@ -31,35 +35,79 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link d-flex justify-content-center align-items-center border pr-4 pl-3" href="#">
+    <ul class="navbar-nav mx-auto text-center">
+      <li class="nav-item clientMenu">
+        <a class="nav-link border pr-4 pl-3" href="#">
           <img src="../../assets/icon/cerveja.png" class="icones">
           Cervejas
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex justify-content-center align-items-center border pr-4 pl-3" href="#">
+      <li class="nav-item clientMenu">
+        <a class="nav-link border pr-4 pl-3" href="#">
           <img src="../../assets/icon/cachaca.png" class="icones">
           Cachaças
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex justify-content-center align-items-center border pr-4 pl-3" href="#">
+      <li class="nav-item clientMenu">
+        <a class="nav-link border pr-4 pl-3" href="#">
           <img src="../../assets/icon/aguardente.png" class="icones">
-          Aguardente
+          Aguardentes
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex justify-content-center align-items-center border pr-4 pl-3" href="#">
+      <li class="nav-item clientMenu">
+        <a class="nav-link border pr-4 pl-3" href="#">
           <img src="../../assets/icon/pinga.png" class="icones">
           Pingas
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link d-flex justify-content-center align-items-center border pr-4 pl-3" href="#">
+      <li class="nav-item clientMenu">
+        <a class="nav-link border pr-4 pl-3" href="#">
           <img src="../../assets/icon/gift.png" class="icones">
           Acessórios
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="this.login.isAdmin">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin" aria-controls="admin"
+    aria-expanded="false" aria-label="Alterna navegação de Admin">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="admin">
+    <ul class="navbar-nav mx-auto text-center">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Adicionar Produtos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Listar Produtos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Buscar Produto
+        </a>
+      </li>
+      <a class="nav-item">
+        <img src="../../assets/icon/admin.png" width="45px" height="45px" class="img-fluid">
+      </a>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Cadastrar Usuário
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Listar Usuários
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Buscar Usuário
         </a>
       </li>
     </ul>
