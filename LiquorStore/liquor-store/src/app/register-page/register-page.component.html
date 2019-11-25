@@ -1,4 +1,4 @@
-<div class="container p-3">
+<div class="container p-3" [@animate]="currentState">
   <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
 
     <div class="row">

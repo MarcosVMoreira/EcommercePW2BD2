@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ApiService } from 'src/service/api.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { MustMatch } from '../../helper/must-match.validator';
 import { Router } from '@angular/router';
@@ -8,12 +9,24 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  styleUrls: ['./register-page.component.css'],
+  animations: [
+    trigger('animate', [
+      state('initial', style({
+        opacity: 0
+      })),
+      state('final', style({
+        opacity: 1
+      })),
+      transition('initial=>final', animate('500ms ease-in')),
+    ]),
+  ]
 })
-export class RegisterPageComponent {
+export class RegisterPageComponent implements OnInit {
   userForm: FormGroup;
   userFormSync: NgForm;
   submitted: boolean = false;
+  currentState: string = 'initial';
 
   constructor(
     private _api: ApiService,
@@ -29,6 +42,14 @@ export class RegisterPageComponent {
     }, {
       validator: MustMatch('usu_senha', 'usu_senhaConfirma')
     });
+  }
+
+  ngOnInit(): void {
+    if (this.currentState = "initial") {
+      setTimeout(() => {
+        this.currentState = 'final';
+      });
+    }
   }
 
   get form() {
