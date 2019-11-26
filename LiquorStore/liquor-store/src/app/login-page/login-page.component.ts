@@ -78,6 +78,11 @@ export class LoginPageComponent implements OnInit {
       } else {
         this.login.user = res;
         this.login.isLogged = true;
+
+        if(res[0].usu_perfil === 'Admin') {
+          this.login.isAdmin = true;
+        }
+
         this.router.navigateByUrl("/home");
       }
     }, err => {

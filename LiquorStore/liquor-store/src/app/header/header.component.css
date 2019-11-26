@@ -3,7 +3,7 @@
   background-color: #353A40;
 }
 
-img:first-child {
+.logo {
   width: 7rem;
   height: 7rem;
 }
@@ -24,34 +24,34 @@ img:first-child {
 }
 
 /* NAVBAR */
-li a {
+.clientMenu a {
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: bold;
   color: white !important;
 }
 
-li {
+.clientMenu {
   transition: 1s;
 }
 
-li:hover:nth-child(1) {
+.clientMenu:hover:nth-child(1) {
   background-color: #FE0000;
 }
 
-li:hover:nth-child(2) {
+.clientMenu:hover:nth-child(2) {
   background-color: #33CC33;
 }
 
-li:hover:nth-child(3) {
+.clientMenu:hover:nth-child(3) {
   background-color: #FF0066;
 }
 
-li:hover:nth-child(4) {
+.clientMenu:hover:nth-child(4) {
   background-color: #E2A00C;
 }
 
-li:hover:nth-child(5) {
+.clientMenu:hover:nth-child(5) {
   background-color: #FE0000;
 }
 
