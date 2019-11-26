@@ -22,8 +22,8 @@ module.exports = function (app) {
         .put(product.updateProduct)
         .delete(product.deleteProduct);
 
-    app.route('/login/:emailUsuario')
-        .get(user.findUser);
+    app.route('/login')
+        .post(user.findUser);
 
 };
 
