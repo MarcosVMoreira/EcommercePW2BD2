@@ -13,6 +13,9 @@ module.exports = function (app) {
         .put(user.updateUser)
         .delete(user.deleteUser);
 
+    app.route('/usuario/produto/:usuarioId')
+        .get(product.readUserProduct);
+
     app.route('/produto')
         .get(product.listAllProducts)
         .post(product.createProduct);

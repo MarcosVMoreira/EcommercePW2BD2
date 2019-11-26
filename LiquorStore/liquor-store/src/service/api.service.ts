@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { User } from 'src/model/user';
+import { Product } from 'src/model/product';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,6 +32,11 @@ export class ApiService {
   updateUser(id, user): Observable<any> {
     return this.http.put(`${url}/usuario/${id}`, user, httpOptions)
       .pipe(catchError(this.handleError<User>(`updateUser id = ${id}`)));
+  }
+
+  getUserProducts(id): Observable<Product[]> {
+    return this.http.get<Product[]>(`${url}/usuario/produto/${id}`)
+      .pipe(catchError(this.handleError<Product[]>(`getUserProducts id= ${id}`)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
