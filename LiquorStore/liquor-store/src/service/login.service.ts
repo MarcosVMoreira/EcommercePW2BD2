@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 import { User } from 'src/model/user';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +20,9 @@ export class LoginService {
   isAdmin: boolean = false;
   user: User = new User();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router) { }
 
   userLogin(user): Observable<User> {
     return this.http.post<User>(`${url}/login`, user, httpOptions)
@@ -29,6 +32,10 @@ export class LoginService {
   userLogout(): void {
     this.isLogged = false;
     this.user = new User();
+  }
+
+  redirect() {
+    this.router.navigateByUrl("/home");
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

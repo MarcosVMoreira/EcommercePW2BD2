@@ -63,3 +63,19 @@
   width: 50px !important;
   height: 50px !important;
 }
+
+@media (min-width: 768px) and (max-width: 999px) {
+  .nome {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .search {
+    margin: 2rem;
+  }
+
+  .nome {
+    margin-bottom: 2rem;
+  }
+}
