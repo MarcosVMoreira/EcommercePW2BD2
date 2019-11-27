@@ -1,3 +1,83 @@
-<div class="container" *ngIf="this.login.isAdmin">
+<div class="container p-3 d-flex justify-content-center" *ngIf="!this.login.isAdmin">
+  <div class="card p-3">
+    <div class="body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
 
+        <div class="row">
+          <div class="col">
+            <h1>Cadastro de Produtos</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-8 col-sm-12">
+            <label>Nome</label>
+            <input type="text" class="form-control" formControlName="prod_nome"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_nome.errors }">
+            <div *ngIf="submitted && form.prod_nome.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_nome.errors.required">O nome do produto é obrigatório</div>
+            </div>
+          </div>
+          <div class="form-group col-md col-sm-12">
+            <label>Categoria do Produto</label>
+            <select class="form-control" formControlName="prod_cat"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_cat.errors }">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <div *ngIf="submitted && form.prod_cat.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_cat.errors.required">Escolha uma categoria</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col">
+            <label>Descrição</label>
+            <textarea class="form-control" formControlName="prod_desc" rows="3"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_desc.errors }"></textarea>
+            <div *ngIf="submitted && form.prod_desc.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_desc.errors.required">A descrição do produto é obrigatória</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-md-4 col-sm-12">
+            <label>Preço Unitário</label>
+            <input mask="separator.2" thousandSeparator="." type="text" prefix="R$" class="form-control"
+              formControlName="prod_preco" [ngClass]="{ 'is-invalid': submitted && form.prod_preco.errors }">
+            <div *ngIf="submitted && form.prod_preco.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_preco.errors.required">O preço do produto é obrigatória</div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-12">
+            <label>Quantidade</label>
+            <input type="number" class="form-control" formControlName="prod_qtd"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_qtd.errors }">
+            <div *ngIf="submitted && form.prod_qtd.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_qtd.errors.required">A quantidade de produtos é obrigatória</div>
+            </div>
+          </div>
+          <div class="form-group col-md col-sm-12">
+            <label>Imagem</label>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="customFile" (change)="onFileChanged($event)">
+              <label class="custom-file-label" for="customFile">Escolher Arquivo</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-dark">Criar Produto</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </div>

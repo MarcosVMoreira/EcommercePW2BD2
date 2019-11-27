@@ -13,7 +13,7 @@ exports.listAllProducts = function (req, res) {
 
 exports.createProduct = function (req, res) {
     var newProduct = new Product(req.body);
-    if (!newProduct.prod_nome || !newProduct.prod_descricao || !newProduct.prod_preco) {
+    if (!newProduct.prod_nome || !newProduct.prod_descricao || !newProduct.prod_preco || !newProduct.prod_quantidade) {
         res.status(400).send({
             error: true,
             message: 'Please provide product name/desc/price'
@@ -27,7 +27,6 @@ exports.createProduct = function (req, res) {
         });
     }
 };
-
 
 exports.readProduct = function (req, res) {
     Product.getProductById(req.params.produtoId, function (err, product) {
