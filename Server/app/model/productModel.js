@@ -4,8 +4,11 @@ var sql = require('./db.js');
 var Product = function (product) {
     this.prod_id = product.prod_id;
     this.prod_nome = product.prod_nome;
-    this.prod_descricao = product.prod_descricao;
+    this.prod_descricao = product.prod_desc;
+    this.prod_categoria = product.prod_cat;
     this.prod_preco = product.prod_preco;
+    this.prod_quantidade = product.prod_qtd;
+    this.prod_imagem = product.prod_img;
 }
 
 Product.createProduct = function (newProduct, result) {
@@ -69,7 +72,7 @@ Product.removeProduct = function (prod_id, result) {
 };
 
 Product.getProductByUserId = function (user_id, result) {
-    sql.query("SELECT p.prod_nome, p.prod_descricao, pc.categoria AS prod_categoria FROM produto p INNER JOIN prod_usu pu ON pu.prod_usu_produto = prod_id INNER JOIN usuario u ON u.usu_id = prod_usu_usuario INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE u.usu_id = ?", user_id, function (err, res) {
+    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_nome, p.prod_descricao, pc.categoria AS prod_categoria FROM produto p INNER JOIN prod_usu pu ON pu.prod_usu_produto = prod_id INNER JOIN usuario u ON u.usu_id = prod_usu_usuario INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE u.usu_id = ? ORDER BY prod_usu_id DESC", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);

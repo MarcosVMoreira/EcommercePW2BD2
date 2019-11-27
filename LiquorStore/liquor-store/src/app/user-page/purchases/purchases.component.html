@@ -5,12 +5,10 @@
   </div>
   <div class="card primary-card p-3">
     <h1> Histórico de Compras </h1>
-
     <div class="card bg-light mb-3" *ngFor="let product of productList">
       <div class="row">
         <div class="col ml-3 p-3">
-          <img src="https://www.cervejando.com/wp-content/uploads/2015/11/ta%C3%A7as.jpg"
-            class="card-img img img-thumbnail">
+          <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
         </div>
         <div class="col-md-8">
           <div class="card-body">

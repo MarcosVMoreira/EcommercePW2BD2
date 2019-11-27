@@ -39,6 +39,11 @@ export class ApiService {
       .pipe(catchError(this.handleError<Product[]>(`getUserProducts id= ${id}`)));
   }
 
+  createProduct(product): Observable<Product> {
+    return this.http.post<Product>(`${url}/produto`, product, httpOptions)
+      .pipe(catchError(this.handleError<Product>('createProduct')));
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
