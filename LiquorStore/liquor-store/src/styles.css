@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 app-root {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.custom-pagination /deep/ .ngx-pagination .current {
+  background: #353A40;
+  border-radius: 4px;
 }

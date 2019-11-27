@@ -1,21 +1,25 @@
-<div class="container p-3 d-flex justify-content-center" [@animate]="currentState" *ngIf=this.login.isLogged>
-  <div class="list-group mr-2">
-    <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
-    <a [routerLink]="['/usuario/historico']" class="list-group-item list-group-item-action">Histórico de Compras</a>
-  </div>
-  <div class="card primary-card p-3">
-    <h1> Histórico de Compras </h1>
-    <div class="card bg-light mb-3" *ngFor="let product of productList">
-      <div class="row">
-        <div class="col ml-3 p-3">
-          <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h3 class="card-title">{{ product.prod_nome }}</h3>
-            <h4 class="card-text">{{ product.prod_categoria }}</h4>
-            <p class="card-text text-justify">{{ product.prod_descricao }}</p>
-            <button class="btn btn-dark float-right mb-3">Comprar novamente</button>
+<div class="container p-3" [@animate]="currentState" *ngIf=this.login.isLogged>
+  <div class="row">
+
+    <div class="list-group col-md-3 offset-md-1 col-sm-12">
+      <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
+      <a [routerLink]="['/usuario/historico']" class="list-group-item list-group-item-action">Histórico de Compras</a>
+    </div>
+
+    <div class="card primary-card p-3 col-md-7 col-sm-12">
+      <h1> Histórico de Compras </h1>
+      <div class="card bg-light mb-3" *ngFor="let product of productList">
+        <div class="row">
+          <div class="col ml-3 p-3">
+            <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title">{{ product.prod_nome }}</h3>
+              <h4 class="card-text">{{ product.prod_categoria }}</h4>
+              <p class="card-text text-justify">{{ product.prod_descricao }}</p>
+              <button class="btn btn-dark float-right mb-3">Comprar novamente</button>
+            </div>
           </div>
         </div>
       </div>

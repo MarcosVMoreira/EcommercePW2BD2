@@ -7,7 +7,6 @@ exports.listAllUsers = function (req, res) {
         console.log('controller')
         if (err)
             res.send(err);
-        console.log('res', user);
         res.send(user);
     });
 };
@@ -65,5 +64,13 @@ exports.findUser = function (req, res) {
         user == "" ? res.json({
             message: 'User not found'
         }) : res.json(user);
+    });
+};
+
+exports.readUserName = function (req, res) {
+    User.getUserByName(req.params.usuarioNome, function (err, product) {
+        if (err)
+            res.send(err);
+        res.json(product);
     });
 };

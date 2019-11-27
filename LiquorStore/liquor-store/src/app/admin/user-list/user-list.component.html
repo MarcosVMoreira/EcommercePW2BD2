@@ -1,0 +1,21 @@
+<div class="container p-3" *ngIf=this.login.isAdmin>
+  <div class="row">
+    <div class="card primary-card p-3 col-md-6 col-sm-12 offset-md-3">
+      <h1> Lista de Usuários </h1>
+      <div class="card bg-light mb-3" *ngFor="let user of userList | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row">
+          <div class="col">
+            <div class="card-body">
+              <h3 class="card-title">{{ user.usu_nome }} - {{ user.usu_perfil }}</h3>
+              <h4 class="card-text">Email: {{ user.usu_email }}</h4>
+              <p class="card-text text-justify">Celular: <span>{{user.usu_telefone | mask: '(00) 0000-0000'}}</span></p>
+              <p class="card-text text-justify">Endereço: {{ user.usu_endereco }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <pagination-controls class="offset-2 custom-pagination" previousLabel="Anterior" nextLabel="Próxima"
+        (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>

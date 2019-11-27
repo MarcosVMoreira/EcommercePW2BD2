@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { ApiService } from 'src/service/api.service';
+import { UserService } from 'src/service/user.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
-import { MustMatch } from '../../helper/must-match.validator';
+import { MustMatch } from 'src/helper/must-match.validator';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
   currentState: string = 'initial';
 
   constructor(
-    private _api: ApiService,
+    private userApi: UserService,
     private formBuilder: FormBuilder,
     private router: Router) {
     this.userForm = this.formBuilder.group({
@@ -39,6 +39,7 @@ export class RegisterPageComponent implements OnInit {
       'usu_email': ['', Validators.required],
       'usu_telefone': ['', Validators.required],
       'usu_endereco': ['', Validators.required],
+      'usu_perfil': ['Cliente']
     }, {
       validator: MustMatch('usu_senha', 'usu_senhaConfirma')
     });
@@ -63,7 +64,7 @@ export class RegisterPageComponent implements OnInit {
       return;
     }
 
-    this._api.createUser(form).subscribe(res => {
+    this.userApi.createUser(form).subscribe(res => {
       if (res['message'] === "Duplicate entry") {
         this.userForm.controls['usu_email'].setErrors({ invalid: true });
       } else {

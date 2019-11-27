@@ -6,7 +6,6 @@ exports.listAllProducts = function (req, res) {
     Product.getAllProducts(function (err, product) {
         if (err)
             res.send(err);
-        console.log('res', product);
         res.send(product);
     });
 };
@@ -63,4 +62,20 @@ exports.readUserProduct = function (req, res) {
             res.send(err);
         res.json(product);
     });
-}
+};
+
+exports.readCategories = function (req, res) {
+    Product.getAllCategories(function (err, categories) {
+        if (err)
+            res.send(err);
+        res.send(categories);
+    });
+};
+
+exports.readProductName = function (req, res) {
+    Product.getProductByName(req.params.produtoNome, function (err, product) {
+        if (err)
+            res.send(err);
+        res.json(product);
+    });
+};
