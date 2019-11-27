@@ -1,87 +1,90 @@
-<div class="container p-3 d-flex justify-content-center" [@animate]="currentState" *ngIf=this.login.isLogged>
-  <div class="list-group mr-2">
-    <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
-    <a [routerLink]="['/usuario/historico']" class="list-group-item list-group-item-action">Histórico de Compras</a>
-  </div>
-  <div class="card p-3">
-    <div class="body">
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<div class="container p-3" [@animate]="currentState" *ngIf=this.login.isLogged>
+  <div class="row">
+    <div class="list-group col-md-3 offset-md-1 col-sm-12">
+      <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
+      <a [routerLink]="['/usuario/historico']" class="list-group-item list-group-item-action">Histórico de Compras</a>
+    </div>
 
-        <div class="row">
-          <div class="col">
-            <h1>Cadastro</h1>
-          </div>
-        </div>
+    <div class="card p-3 col-md-7 col-sm-12">
+      <div class="body">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
 
-        <div class="row">
-          <div class="form-group col">
-            <label>Nome Completo</label>
-            <input type="text" class="form-control" formControlName="usu_nome"
-              [ngClass]="{ 'is-invalid': submitted && form.usu_nome.errors }">
-            <div *ngIf="submitted && form.usu_nome.errors" class="invalid-feedback">
-              <div *ngIf="form.usu_nome.errors.required">O nome é obrigatório</div>
+          <div class="row">
+            <div class="col">
+              <h1>Cadastro</h1>
             </div>
           </div>
-          <div class="form-group col">
-            <label>Email</label>
-            <input type="email" class="form-control" value="{{this.login.user[0].usu_email}}" disabled>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col">
-            <label>Endereço</label>
-            <input type="text" class="form-control" formControlName="usu_endereco"
-              [ngClass]="{ 'is-invalid': submitted && form.usu_endereco.errors }">
-            <div *ngIf="submitted && form.usu_endereco.errors" class="invalid-feedback">
-              <div *ngIf="form.usu_endereco.errors.required">O endereço é obrigatório</div>
+          <div class="row">
+            <div class="form-group col">
+              <label>Nome Completo</label>
+              <input type="text" class="form-control" formControlName="usu_nome"
+                [ngClass]="{ 'is-invalid': submitted && form.usu_nome.errors }">
+              <div *ngIf="submitted && form.usu_nome.errors" class="invalid-feedback">
+                <div *ngIf="form.usu_nome.errors.required">O nome é obrigatório</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Email</label>
+              <input type="email" class="form-control" value="{{this.login.user[0].usu_email}}" disabled>
             </div>
           </div>
-          <div class="form-group col">
-            <label>Nova Senha</label>
-            <input type="password" class="form-control" formControlName="usu_senha"
-              [ngClass]="{ 'is-invalid': submitted && form.usu_senha.errors }">
-            <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
-              <div *ngIf="form.usu_senha.errors.required">A nova senha é obrigatória</div>
-              <div *ngIf="form.usu_senha.errors.minlength">A nova senha deve ter no mínimo 6 caracteres</div>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col">
-            <label>Telefone celular</label>
-            <input mask="(00) 00000-0000" [showMaskTyped]="true" [clearIfNotMatch]="true" class="form-control"
-              formControlName="usu_telefone" [ngClass]="{ 'is-invalid': submitted && form.usu_telefone.errors }">
-            <div *ngIf="submitted && form.usu_telefone.errors" class="invalid-feedback">
-              <div *ngIf="form.usu_telefone.errors.required">O telefone é obrigatório</div>
+          <div class="row">
+            <div class="form-group col">
+              <label>Endereço</label>
+              <input type="text" class="form-control" formControlName="usu_endereco"
+                [ngClass]="{ 'is-invalid': submitted && form.usu_endereco.errors }">
+              <div *ngIf="submitted && form.usu_endereco.errors" class="invalid-feedback">
+                <div *ngIf="form.usu_endereco.errors.required">O endereço é obrigatório</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Nova Senha</label>
+              <input type="password" class="form-control" formControlName="usu_senha"
+                [ngClass]="{ 'is-invalid': submitted && form.usu_senha.errors }">
+              <div *ngIf="submitted && form.usu_senha.errors" class="invalid-feedback">
+                <div *ngIf="form.usu_senha.errors.required">A nova senha é obrigatória</div>
+                <div *ngIf="form.usu_senha.errors.minlength">A nova senha deve ter no mínimo 6 caracteres</div>
+              </div>
             </div>
           </div>
-          <div class="form-group col">
-            <label>Confirme sua nova senha</label>
-            <input type="password" class="form-control" formControlName="usu_senhaConfirma"
-              [ngClass]="{ 'is-invalid': submitted && form.usu_senhaConfirma.errors }">
-            <div *ngIf="submitted && form.usu_senhaConfirma.errors" class="invalid-feedback">
-              <div *ngIf="form.usu_senhaConfirma.errors.required">A confirmação da nova senha é obrigatória</div>
-              <div *ngIf="form.usu_senhaConfirma.errors.mustMatch">As senhas devem ser iguais</div>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-dark">Atualizar Cadastro</button>
-          </div>
-          <div class="col">
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="check" formControlName="change_password"
-                (change)="handleChange($event.target.checked)">
-              <label class="form-check-label" for="check">Alterar Senha</label>
+          <div class="row">
+            <div class="form-group col">
+              <label>Telefone celular</label>
+              <input mask="(00) 00000-0000" [showMaskTyped]="true" [clearIfNotMatch]="true" class="form-control"
+                formControlName="usu_telefone" [ngClass]="{ 'is-invalid': submitted && form.usu_telefone.errors }">
+              <div *ngIf="submitted && form.usu_telefone.errors" class="invalid-feedback">
+                <div *ngIf="form.usu_telefone.errors.required">O telefone é obrigatório</div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Confirme sua nova senha</label>
+              <input type="password" class="form-control" formControlName="usu_senhaConfirma"
+                [ngClass]="{ 'is-invalid': submitted && form.usu_senhaConfirma.errors }">
+              <div *ngIf="submitted && form.usu_senhaConfirma.errors" class="invalid-feedback">
+                <div *ngIf="form.usu_senhaConfirma.errors.required">A confirmação da nova senha é obrigatória</div>
+                <div *ngIf="form.usu_senhaConfirma.errors.mustMatch">As senhas devem ser iguais</div>
+              </div>
             </div>
           </div>
-        </div>
 
-      </form>
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-dark">Atualizar Cadastro</button>
+            </div>
+            <div class="col">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="check" formControlName="change_password"
+                  (change)="handleChange($event.target.checked)">
+                <label class="form-check-label" for="check">Alterar Senha</label>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
     </div>
   </div>
 </div>

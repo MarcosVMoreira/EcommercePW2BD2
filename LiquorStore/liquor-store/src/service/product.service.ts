@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
-import { User } from 'src/model/user';
 import { Product } from 'src/model/product';
+import { Category } from 'src/model/category';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,24 +15,9 @@ const url = "http://localhost:3000";
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ProductService {
 
   constructor(private http: HttpClient) { }
-
-  createUser(user): Observable<User> {
-    return this.http.post<User>(`${url}/usuario`, user, httpOptions)
-      .pipe(catchError(this.handleError<User>('createUser')));
-  }
-
-  getUser(id): Observable<User> {
-    return this.http.get<User>(`${url}/usuario/${id}`)
-      .pipe(catchError(this.handleError<User>(`getUser id = ${id}`)));
-  }
-
-  updateUser(id, user): Observable<any> {
-    return this.http.put(`${url}/usuario/${id}`, user, httpOptions)
-      .pipe(catchError(this.handleError<User>(`updateUser id = ${id}`)));
-  }
 
   getUserProducts(id): Observable<Product[]> {
     return this.http.get<Product[]>(`${url}/usuario/produto/${id}`)
@@ -42,6 +27,21 @@ export class ApiService {
   createProduct(product): Observable<Product> {
     return this.http.post<Product>(`${url}/produto`, product, httpOptions)
       .pipe(catchError(this.handleError<Product>('createProduct')));
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${url}/categoria`)
+      .pipe(catchError(this.handleError<Category[]>('getCategories')));
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${url}/produto`)
+      .pipe(catchError(this.handleError<Product[]>('getAllProducts')));
+  }
+
+  getProductsByName(name): Observable<Product[]> {
+    return this.http.get<Product[]>(`${url}/busca/produto/${name}`)
+      .pipe(catchError(this.handleError<Product[]>(`getProductsByName name= ${name}`)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

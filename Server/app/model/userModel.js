@@ -8,10 +8,11 @@ var User = function (user) {
     this.usu_email = user.usu_email;
     this.usu_telefone = user.usu_telefone;
     this.usu_endereco = user.usu_endereco;
+    this.usu_perfil = user.usu_perfil;
 };
 
 User.createUser = function (newUser, result) {
-    let query = "INSERT INTO usuario (usu_nome, usu_senha, usu_perfil, usu_email, usu_telefone, usu_endereco) VALUES ('" + newUser.usu_nome + "', md5('" + newUser.usu_senha + "'), 'Cliente', '" + newUser.usu_email + "', '" + newUser.usu_telefone + "', '" + newUser.usu_endereco + "')";
+    let query = "INSERT INTO usuario (usu_nome, usu_senha, usu_perfil, usu_email, usu_telefone, usu_endereco) VALUES ('" + newUser.usu_nome + "', md5('" + newUser.usu_senha + "'), '" + newUser.usu_perfil + "', '" + newUser.usu_email + "', '" + newUser.usu_telefone + "', '" + newUser.usu_endereco + "')";
 
     sql.query(query, function (err, res) {
         if (err) {
@@ -94,5 +95,16 @@ User.findUser = function (user, result) {
         }
     });
 };
+
+User.getUserByName = function (name, result) {
+    sql.query("SELECT usu_id, usu_nome, usu_perfil, usu_email, usu_telefone, usu_endereco FROM usuario WHERE MATCH (usu_nome) AGAINST (?)", name, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+}
 
 module.exports = User;

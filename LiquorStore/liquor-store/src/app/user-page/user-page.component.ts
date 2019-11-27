@@ -5,8 +5,9 @@ import { Md5 } from 'ts-md5/dist/md5';
 import { Router } from '@angular/router';
 
 import { MustMatch } from '../../helper/must-match.validator';
-import { ApiService } from 'src/service/api.service';
+import { UserService } from 'src/service/user.service';
 import { LoginService } from 'src/service/login.service';
+import { User } from 'src/model/user';
 
 const md5 = new Md5();
 
@@ -40,7 +41,7 @@ export class UserPageComponent implements OnInit {
   usu_senha: string;
 
   constructor(
-    private _api: ApiService,
+    private userApi: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
     private login: LoginService) {
@@ -51,7 +52,7 @@ export class UserPageComponent implements OnInit {
       this.usu_endereco = this.login.user[0].usu_endereco;
       this.usu_senha = this.login.user[0].usu_senha;
     } else {
-      this.router.navigateByUrl('/home');
+      this.login.redirect();
     }
   }
 
@@ -100,12 +101,11 @@ export class UserPageComponent implements OnInit {
       return;
     }
 
-    this._api.updateUser(this.login.user[0].usu_id, form).subscribe(
-      res => {
-        console.log(res)
-      }, err => {
-        console.log(err);
-      });
+    this.userApi.updateUser(this.login.user[0].usu_id, form).subscribe(() => {
+      this.login.userUpdate();
+    }, err => {
+      console.log(err);
+    });
 
     this.router.navigateByUrl('/home')
   }

@@ -1,7 +1,7 @@
-<div class="container p-3 d-flex justify-content-center" *ngIf="!this.login.isAdmin">
+<div class="container p-3 d-flex justify-content-center" *ngIf="this.login.isAdmin">
   <div class="card p-3">
     <div class="body">
-      <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm.value)">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)">
 
         <div class="row">
           <div class="col">
@@ -22,11 +22,9 @@
             <label>Categoria do Produto</label>
             <select class="form-control" formControlName="prod_cat"
               [ngClass]="{ 'is-invalid': submitted && form.prod_cat.errors }">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              <option *ngFor="let category of categories" [value]="category.categoria_id">
+                {{ category.categoria }}
+              </option>
             </select>
             <div *ngIf="submitted && form.prod_cat.errors" class="invalid-feedback">
               <div *ngIf="form.prod_cat.errors.required">Escolha uma categoria</div>
@@ -66,14 +64,15 @@
             <label>Imagem</label>
             <div class="custom-file">
               <input type="file" class="custom-file-input" id="customFile" (change)="onFileChanged($event)">
-              <label class="custom-file-label" for="customFile">Escolher Arquivo</label>
+              <label class="custom-file-label" for="customFile" data-browse="Procurar">Escolher Arquivo</label>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col">
-            <button class="btn btn-dark">Criar Produto</button>
+            <button *ngIf="'/admin/item-add' == getSection()" class="btn btn-dark">Criar Produto</button>
+            <button *ngIf="'/admin/item-add-new' == getSection()" class="btn btn-dark">Criar Produto</button>
           </div>
         </div>
 

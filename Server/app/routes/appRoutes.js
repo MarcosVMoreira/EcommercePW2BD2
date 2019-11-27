@@ -25,9 +25,16 @@ module.exports = function (app) {
         .put(product.updateProduct)
         .delete(product.deleteProduct);
 
+    app.route('/busca/produto/:produtoNome')
+        .get(product.readProductName);
+
+    app.route('/busca/usuario/:usuarioNome')
+        .get(user.readUserName);
+
+    app.route('/categoria')
+        .get(product.readCategories);
+
     app.route('/login')
         .post(user.findUser);
 
 };
-
-

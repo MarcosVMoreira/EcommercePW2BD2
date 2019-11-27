@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { ApiService } from 'src/service/api.service';
+import { ProductService } from 'src/service/product.service';
 import { LoginService } from 'src/service/login.service';
 import { Product } from 'src/model/product';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-purchases',
@@ -29,12 +29,12 @@ export class PurchasesComponent implements OnInit {
   image: SafeResourceUrl;
 
   constructor(
-    private _api: ApiService,
+    private productApi: ProductService,
     private router: Router,
     private login: LoginService,
     private sanitizer: DomSanitizer) {
     if (!this.login.isLogged) {
-      this.router.navigateByUrl('/home');
+      this.login.redirect();
     }
   }
 
@@ -45,7 +45,7 @@ export class PurchasesComponent implements OnInit {
       });
     }
 
-    this._api.getUserProducts(this.login.user[0].usu_id).subscribe(res => {
+    this.productApi.getUserProducts(this.login.user[0].usu_id).subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
       }

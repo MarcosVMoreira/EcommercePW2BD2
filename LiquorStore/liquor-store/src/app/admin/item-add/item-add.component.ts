@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/service/login.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { ApiService } from 'src/service/api.service';
-import { DomSanitizer } from '@angular/platform-browser';
+
+import { LoginService } from 'src/service/login.service';
+import { ProductService } from 'src/service/product.service';
+import { Category } from 'src/model/category';
 
 @Component({
   selector: 'app-item-add',
@@ -12,16 +13,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ItemAddComponent implements OnInit {
   productForm: FormGroup;
+  categories: Category[];
   submitted: boolean = false;
-src;
+
   constructor(
     private login: LoginService,
     private formBuilder: FormBuilder,
-    private _api: ApiService,
-    private router: Router,
-    private sanitizer: DomSanitizer) {
-    if (this.login.isAdmin) {
-      this.router.navigateByUrl('/home');
+    private productApi: ProductService,
+    private router: Router) {
+    if (!this.login.isAdmin) {
+      this.login.redirect();
     } else {
       this.productForm = this.formBuilder.group({
         'prod_nome': ['', Validators.required],
@@ -35,6 +36,11 @@ src;
   }
 
   ngOnInit() {
+    this.productApi.getCategories().subscribe(res => {
+      this.categories = res;
+    }, err => {
+      console.log(err);
+    });
   }
 
   get form() {
@@ -57,11 +63,17 @@ src;
       return;
     }
 
-    this._api.createProduct(form).subscribe(res => {
-      console.log(res);
-    }, err => {
+    this.productApi.createProduct(form.value).subscribe(err => {
       console.log(err);
     });
+
+    if (this.getSection() === '/admin/item-add')
+      this.router.navigateByUrl('/admin/item-add-new')
+    else
+      this.router.navigateByUrl('/admin/item-add')
   }
 
+  getSection() {
+    return this.router.url;
+  }
 }
