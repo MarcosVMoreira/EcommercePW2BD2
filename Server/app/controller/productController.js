@@ -4,8 +4,6 @@ var Product = require('../model/productModel.js');
 
 exports.listAllProducts = function (req, res) {
     Product.getAllProducts(function (err, product) {
-
-        console.log('controller')
         if (err)
             res.send(err);
         console.log('res', product);
@@ -15,14 +13,11 @@ exports.listAllProducts = function (req, res) {
 
 exports.createProduct = function (req, res) {
     var newProduct = new Product(req.body);
-
-    console.log("Data: "+newProduct.prod_nome+", "+newProduct.prod_descricao+", "+newProduct.prod_preco);
-
-    //handles null error 
     if (!newProduct.prod_nome || !newProduct.prod_descricao || !newProduct.prod_preco) {
-
-        res.status(400).send({ error: true, message: 'Please provide product name/desc/price' });
-
+        res.status(400).send({
+            error: true,
+            message: 'Please provide product name/desc/price'
+        });
     } else {
         Product.createProduct(newProduct, function (err, product) {
             if (err) {
@@ -35,40 +30,38 @@ exports.createProduct = function (req, res) {
 
 
 exports.readProduct = function (req, res) {
-
     Product.getProductById(req.params.produtoId, function (err, product) {
         if (err)
             res.send(err);
         res.json(product);
     });
-
 };
 
 
 exports.updateProduct = function (req, res) {
-
     var product = new Product(req.body);
-
     Product.updateProductById(req.params.produtoId, product, function (err, product) {
         if (err)
             res.send(err);
         res.json(product);
     });
-
 };
 
 
 exports.deleteProduct = function (req, res) {
-
-    console.log("Product id "+req.params.produtoId);
-
     Product.removeProduct(req.params.produtoId, function (err, product) {
         if (err)
             res.send(err);
-        res.json({ message: 'Product successfully deleted' });
+        res.json({
+            message: 'Product successfully deleted'
+        });
     });
-
 };
 
-
-
+exports.readUserProduct = function (req, res) {
+    Product.getProductByUserId(req.params.usuarioId, function (err, product) {
+        if (err)
+            res.send(err);
+        res.json(product);
+    });
+}

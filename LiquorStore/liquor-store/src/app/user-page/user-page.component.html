@@ -1,7 +1,7 @@
 <div class="container p-3 d-flex justify-content-center" [@animate]="currentState" *ngIf=this.login.isLogged>
   <div class="list-group mr-2">
-    <a routerLink="/usuario" class="list-group-item list-group-item-action">Alterar Cadastro</a>
-    <a href="#" class="list-group-item list-group-item-action">Histórico de Compras</a>
+    <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
+    <a [routerLink]="['/usuario/historico']" class="list-group-item list-group-item-action">Histórico de Compras</a>
   </div>
   <div class="card p-3">
     <div class="body">

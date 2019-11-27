@@ -5,6 +5,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ItemAddComponent } from './admin/item-add/item-add.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { PurchasesComponent } from './user-page/purchases/purchases.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: "usuario",
     component: UserPageComponent
+  },
+  {
+    path: "usuario/historico",
+    component: PurchasesComponent
   },
   {
     path: "admin/item-add",

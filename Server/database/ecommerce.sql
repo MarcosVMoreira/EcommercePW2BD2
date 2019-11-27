@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
--- Host: localhost    Database: liquorstore
+-- Host: 127.0.0.1    Database: liquorstore
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +27,7 @@ CREATE TABLE `prod_usu` (
   `prod_usu_produto` int(11) NOT NULL,
   `prod_usu_usuario` int(11) NOT NULL,
   PRIMARY KEY (`prod_usu_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +36,7 @@ CREATE TABLE `prod_usu` (
 
 LOCK TABLES `prod_usu` WRITE;
 /*!40000 ALTER TABLE `prod_usu` DISABLE KEYS */;
-INSERT INTO `prod_usu` VALUES (1,1,1);
+INSERT INTO `prod_usu` VALUES (1,2,1),(2,3,1);
 /*!40000 ALTER TABLE `prod_usu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,13 +50,13 @@ DROP TABLE IF EXISTS `produto`;
 CREATE TABLE `produto` (
   `prod_id` int(11) NOT NULL AUTO_INCREMENT,
   `prod_nome` varchar(45) NOT NULL,
-  `prod_descricao` varchar(150) NOT NULL,
+  `prod_descricao` varchar(500) NOT NULL,
   `prod_preco` float NOT NULL,
-  `prod_categoria` varchar(45) NOT NULL,
+  `prod_categoria` int(11) NOT NULL,
   `prod_quantidade` int(11) NOT NULL,
   `prod_imagem` blob,
   PRIMARY KEY (`prod_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,6 +65,7 @@ CREATE TABLE `produto` (
 
 LOCK TABLES `produto` WRITE;
 /*!40000 ALTER TABLE `produto` DISABLE KEYS */;
+INSERT INTO `produto` VALUES (2,'Cerveja do Alasca','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',150,1,150,NULL),(3,'Cerveja do Alambique','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod',100,1,150,NULL);
 /*!40000 ALTER TABLE `produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,10 +122,6 @@ LOCK TABLES `usuario` WRITE;
 INSERT INTO `usuario` VALUES (1,'Otávioa','8bd6644e8d59639acd7a6158ee1f5943','Admin','otaviopalma@gmail.com','99999999998','testea'),(2,'Otavio Cliente','8bd6644e8d59639acd7a6158ee1f5943','Cliente','otavio@cliente.com','99999999999','Rua');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'liquorstore'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -135,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-25  6:30:14
+-- Dump completed on 2019-11-26 20:47:06
