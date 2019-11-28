@@ -21,6 +21,8 @@ import { ItemSearchComponent } from './admin/item-search/item-search.component';
 import { UserAddComponent } from './admin/user-add/user-add.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { UserSearchComponent } from './admin/user-search/user-search.component';
+import { CervejaComponent } from './store/cerveja/cerveja.component';
+import { ComprarCervejaComponent } from './store/cerveja/comprar-cerveja/comprar-cerveja.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { UserSearchComponent } from './admin/user-search/user-search.component';
     UserAddComponent,
     UserListComponent,
     UserSearchComponent,
+    CervejaComponent,
+    ComprarCervejaComponent,
   ],
   imports: [
     BrowserModule,

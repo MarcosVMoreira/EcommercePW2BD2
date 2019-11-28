@@ -5,14 +5,14 @@
       <div class="card bg-light mb-3"
         *ngFor="let product of productList | paginate: { itemsPerPage: 5, currentPage: p }">
         <div class="row">
-          <div class="col ml-3 p-3">
+          <div class="col ml-3 p-3 d-flex align-items-center">
             <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h3 class="card-title">{{ product.prod_nome }}</h3>
-              <h4 class="card-text">{{ product.categoria }}</h4>
-              <h4 class="card-text">R${{ product.prod_preco }} cada unidade, {{ product.prod_quantidade }} unidades em
+              <h3 class="card-title text-center">{{ product.prod_nome }}</h3>
+              <h4 class="card-text text-center">{{ product.categoria }}</h4>
+              <h4 class="card-text text-center">R${{ product.prod_preco.toFixed(2) }} cada unidade, {{ product.prod_quantidade }} unidades em
                 estoque.
               </h4>
               <p class="card-text text-justify">{{ product.prod_descricao }}</p>

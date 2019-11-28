@@ -9,17 +9,13 @@
     <div class="card primary-card p-3 col-md-7 col-sm-12">
       <h1> Histórico de Compras </h1>
       <div class="card bg-light mb-3" *ngFor="let product of productList">
-        <div class="row">
-          <div class="col ml-3 p-3">
+        <div class="row no-gutters">
+          <div class="col-md-4 p-2">
             <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title">{{ product.prod_nome }}</h3>
-              <h4 class="card-text">{{ product.prod_categoria }}</h4>
-              <p class="card-text text-justify">{{ product.prod_descricao }}</p>
-              <button class="btn btn-dark float-right mb-3">Comprar novamente</button>
-            </div>
+          <div class="col-md-8 card-body justify-content-center d-flex flex-column">
+            <h3 class="card-title text-center">{{ product.prod_nome }}</h3>
+            <button class="mt-auto btn btn-dark mr-5 ml-5">Comprar novamente</button>
           </div>
         </div>
       </div>

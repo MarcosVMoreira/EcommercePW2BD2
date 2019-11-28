@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <img [src]=produto.prod_imagem class="img-fluid">
+    </div>
+    <div class="col-7">
+      <div class="title">
+        {{ produto.prod_nome }}
+      </div>
+      <div class="price">
+        R${{ produto.prod_preco }}
+      </div>
+      <input type="text" class="form-control" placeholder="Quantidade">
+      <button class="btn btn-dark">Adicionar ao Carrinho</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.container-fluid {
+  width: 80%;
+}
+
+.buy {
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.img {
+  overflow: hidden;
+}
+
+.img img {
+  transition: 0.5s ease;
+}
+
+.img:hover img {
+  transform: scale(1.2);
+}

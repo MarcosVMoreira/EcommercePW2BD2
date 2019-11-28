@@ -97,7 +97,7 @@ User.findUser = function (user, result) {
 };
 
 User.getUserByName = function (name, result) {
-    sql.query("SELECT usu_id, usu_nome, usu_perfil, usu_email, usu_telefone, usu_endereco FROM usuario WHERE MATCH (usu_nome) AGAINST (?)", name, function (err, res) {
+    sql.query("SELECT usu_id, usu_nome, usu_perfil, usu_email, usu_telefone, usu_endereco FROM usuario WHERE MATCH (usu_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
