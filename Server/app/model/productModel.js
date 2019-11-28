@@ -34,7 +34,7 @@ Product.getProductById = function (prod_id, result) {
 };
 
 Product.getAllProducts = function (result) {
-    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, REPLACE(p.prod_preco, '.', ',') AS prod_preco, pc.categoria, p.prod_quantidade FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id", function (err, res) {
+    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, p.prod_preco, pc.categoria, p.prod_quantidade FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id", function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -91,7 +91,7 @@ Product.getAllCategories = function (result) {
 };
 
 Product.getProductByName = function (name, result) {
-    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, REPLACE(p.prod_preco, '.', ',') AS prod_preco, pc.categoria, p.prod_quantidade FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE MATCH (p.prod_nome) AGAINST (?)", name, function (err, res) {
+    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, REPLACE(p.prod_preco, '.', ',') AS prod_preco, pc.categoria, p.prod_quantidade FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE MATCH (p.prod_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);

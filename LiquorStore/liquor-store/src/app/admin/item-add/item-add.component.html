@@ -46,7 +46,7 @@
         <div class="row">
           <div class="form-group col-md-4 col-sm-12">
             <label>Preço Unitário</label>
-            <input mask="separator.2" thousandSeparator="." type="text" prefix="R$" class="form-control"
+            <input mask="separator" type="text" prefix="R$" class="form-control"
               formControlName="prod_preco" [ngClass]="{ 'is-invalid': submitted && form.prod_preco.errors }">
             <div *ngIf="submitted && form.prod_preco.errors" class="invalid-feedback">
               <div *ngIf="form.prod_preco.errors.required">O preço do produto é obrigatória</div>
