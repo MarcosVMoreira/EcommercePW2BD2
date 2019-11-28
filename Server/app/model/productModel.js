@@ -23,7 +23,7 @@ Product.createProduct = function (newProduct, result) {
 };
 
 Product.getProductById = function (prod_id, result) {
-    sql.query("SELECT prod_nome FROM produto WHERE prod_id = ? ", prod_id, function (err, res) {
+    sql.query("SELECT CONVERT(prod_imagem USING utf8) AS prod_imagem, prod_nome, prod_descricao, prod_quantidade, prod_preco FROM produto WHERE prod_id = ? ", prod_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);

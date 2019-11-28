@@ -42,8 +42,6 @@ User.getAllUsers = function (result) {
             console.log("error: ", err);
             result(null, err);
         } else {
-            console.log('user : ', res);
-
             result(null, res);
         }
     });

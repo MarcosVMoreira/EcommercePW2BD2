@@ -44,6 +44,11 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product[]>(`getProductsByName name= ${name}`)));
   }
 
+  getProductById(id): Observable<Product> {
+    return this.http.get<Product>(`${url}/produto/${id}`)
+      .pipe(catchError(this.handleError<Product>(`getProductById id = ${id}`)));
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
