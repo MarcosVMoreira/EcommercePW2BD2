@@ -25,9 +25,8 @@ export class LoginPageComponent implements OnInit {
   submitted: boolean = false;
   currentState: string = 'initial';
 
-  constructor(private login: LoginService,
-    private formBuilder: FormBuilder,
-    private router: Router) { }
+  constructor(private loginService: LoginService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -70,19 +69,19 @@ export class LoginPageComponent implements OnInit {
       localStorage.clear();
     }
 
-    this.login.userLogin(form).subscribe(res => {
+    this.loginService.userLogin(form).subscribe(res => {
       if (res['message'] === "User not found") {
         this.loginForm.controls['usu_email'].setErrors({ invalid: true });
         this.loginForm.controls['usu_senha'].setErrors({ invalid: true });
       } else {
-        this.login.user = res;
-        this.login.isLogged = true;
+        this.loginService.user = res;
+        this.loginService.isLogged = true;
 
-        if(res[0].usu_perfil === 'Admin') {
-          this.login.isAdmin = true;
+        if (res[0].usu_perfil === 'Admin') {
+          this.loginService.isAdmin = true;
         }
 
-        this.router.navigateByUrl("/home");
+        this.loginService.redirect();
       }
     }, err => {
       console.log(err);

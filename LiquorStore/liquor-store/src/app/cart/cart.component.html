@@ -1,0 +1,64 @@
+<div class="container p-3" [@animate]="currentState">
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    Você selecionou uma quantidade maior que a do nosso estoque do produto: <b>{{ productError }}</b>. Temos apenas
+    <b>{{ productQuantity }}</b> unidades disponíveis.
+  </div>
+  <div *ngIf="cartService.isEmpty()" class="alert alert-danger" role="alert">
+    Seu carrinho está vazio!
+  </div>
+  <td class="row">
+    <table class="table col-8">
+      <thead class="text-center">
+        <tr>
+          <th style="width: 20%" scope="col">Produto</th>
+          <th style="width: 50%" scope="col"></th>
+          <th style="width: 10%" scope="col">Preço</th>
+          <th style="width: 10%" scope="col">Quantidade</th>
+          <th style="width: 10%" scope="col">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let product of productList; let i = index">
+          <tr>
+            <td class="d-flex justify-content-center">
+              <img [src]="product.prod_imagem" class="img-fluid img">
+            </td>
+            <td> {{ product.prod_nome }} </td>
+            <td><b> R${{ product.prod_preco.toFixed(2).replace('.', ',') }} </b></td>
+            <td>
+              <button class="btn btn-secondary btn-sm" (click)="decrease(i)">-</button>
+              {{ product.prod_carrinho }}
+              <button class="btn btn-secondary btn-sm" (click)="increase(i)">+</button>
+            </td>
+            <td><b> R${{ (product.prod_preco * product.prod_carrinho).toFixed(2).replace('.', ',') }} </b></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+    <div class="col-4">
+      <table class="table">
+        <ng-container>
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-uppercase">Total no Carrinho</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="text-uppercase">Total</th>
+              <td> R$ {{ total.toFixed(2).replace('.', ',') }} </td>
+            </tr>
+            <tr>
+              <td colspan="2" *ngIf="cartService.cart.length > 0">
+                <button class="btn btn-success btn-block text-uppercase font-weight-bold" (click)="buy()">
+                  Fechar Compra
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </ng-container>
+      </table>
+    </div>
+</div>

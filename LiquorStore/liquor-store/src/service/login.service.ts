@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import { User } from 'src/model/user';
 import { UserService } from './user.service';
+import { CartService } from './cart.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +25,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private userApi: UserService) { }
+    private userApi: UserService,
+    private cartService: CartService) { }
 
   userLogin(user): Observable<User> {
     return this.http.post<User>(`${url}/login`, user, httpOptions)
@@ -49,6 +51,7 @@ export class LoginService {
     this.isLogged = false;
     this.isAdmin = false;
     this.user = new User();
+    this.cartService.reset();
   }
 
   redirect() {

@@ -41,18 +41,17 @@ export class UserPageComponent implements OnInit {
   usu_senha: string;
 
   constructor(
-    private userApi: UserService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private login: LoginService) {
-    if (this.login.isLogged) {
-      this.usu_nome = this.login.user[0].usu_nome;
-      this.usu_email = this.login.user[0].usu_email;
-      this.usu_telefone = this.login.user[0].usu_telefone;
-      this.usu_endereco = this.login.user[0].usu_endereco;
-      this.usu_senha = this.login.user[0].usu_senha;
+    private loginService: LoginService) {
+    if (this.loginService.isLogged) {
+      this.usu_nome = this.loginService.user[0].usu_nome;
+      this.usu_email = this.loginService.user[0].usu_email;
+      this.usu_telefone = this.loginService.user[0].usu_telefone;
+      this.usu_endereco = this.loginService.user[0].usu_endereco;
+      this.usu_senha = this.loginService.user[0].usu_senha;
     } else {
-      this.login.redirect();
+      this.loginService.redirect();
     }
   }
 
@@ -101,12 +100,12 @@ export class UserPageComponent implements OnInit {
       return;
     }
 
-    this.userApi.updateUser(this.login.user[0].usu_id, form).subscribe(() => {
-      this.login.userUpdate();
+    this.userService.updateUser(this.loginService.user[0].usu_id, form).subscribe(() => {
+      this.loginService.userUpdate();
     }, err => {
       console.log(err);
     });
 
-    this.router.navigateByUrl('/home')
+    this.loginService.redirect();
   }
 }

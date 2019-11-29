@@ -12,8 +12,9 @@ import { ItemSearchComponent } from './admin/item-search/item-search.component';
 import { UserAddComponent } from './admin/user-add/user-add.component';
 import { UserListComponent } from './admin/user-list/user-list.component';
 import { UserSearchComponent } from './admin/user-search/user-search.component';
-import { CervejaComponent } from './store/cerveja/cerveja.component';
-import { ComprarCervejaComponent } from './store/cerveja/comprar-cerveja/comprar-cerveja.component';
+import { StorePageComponent } from './store/store-page/store-page.component';
+import { BuyPageComponent } from './store/store-page/buy-page/buy-page.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -38,12 +39,17 @@ const routes: Routes = [
     component: PurchasesComponent
   },
   {
-    path: "loja/cervejas",
-    component: CervejaComponent
+    path: "loja/:categoria",
+    component: StorePageComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
-    path: "loja/cervejas/:id",
-    component: ComprarCervejaComponent
+    path: "loja/:categoria/:id",
+    component: BuyPageComponent
+  },
+  {
+    path: "carrinho",
+    component: CartComponent
   },
   {
     path: "admin/item-add",
@@ -81,7 +87,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

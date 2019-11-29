@@ -16,12 +16,11 @@ export class ItemSearchComponent implements OnInit {
   image: SafeResourceUrl;
 
   constructor(
-    private productApi: ProductService,
-    private router: Router,
-    private login: LoginService,
+    private productService: ProductService,
+    private loginService: LoginService,
     private sanitizer: DomSanitizer) {
-    if (!this.login.isAdmin) {
-      this.login.redirect();
+    if (!this.loginService.isAdmin) {
+      this.loginService.redirect();
     }
   }
 
@@ -29,7 +28,7 @@ export class ItemSearchComponent implements OnInit {
   }
 
   search(name) {
-    this.productApi.getProductsByName(name).subscribe(res => {
+    this.productService.getProductsByName(name).subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
       }

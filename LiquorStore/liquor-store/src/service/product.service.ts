@@ -49,6 +49,16 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product>(`getProductById id = ${id}`)));
   }
 
+  getProductsByCategory(category): Observable<Product[]> {
+    return this.http.get<Product[]>(`${url}/produto/categoria/${category}`)
+      .pipe(catchError(this.handleError<Product[]>(`getProductByCategory category = ${category}`)));
+  }
+
+  updateProduct(id, product): Observable<any> {
+    return this.http.put(`${url}/produto/${id}`, product, httpOptions)
+      .pipe(catchError(this.handleError<Product>(`updateProduct id = ${id}`)));
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

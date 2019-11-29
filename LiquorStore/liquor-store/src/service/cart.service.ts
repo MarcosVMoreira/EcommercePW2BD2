@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Product } from 'src/model/product';
 import { ProductService } from './product.service';
@@ -12,17 +13,23 @@ export class CartService {
 
     constructor(
         private productApi: ProductService,
-        private loginApi: LoginService) { }
+        private sanitizer: DomSanitizer) { }
 
     addToCart(id) {
-        if (this.loginApi.isLogged) {
-            this.productApi.getProductById(id).subscribe(res => {
-                this.cart.push(res);
-            }, err => {
-                console.log(err);
-            })
-        } else {
-            this.loginApi.login();
-        }
+        this.productApi.getProductById(id).subscribe(res => {
+            res[0].prod_carrinho = 1;
+            res[0].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[0].prod_imagem);
+            this.cart.push(res[0]);
+        }, err => {
+            console.log(err);
+        });
+    }
+
+    reset() {
+        this.cart = [];
+    }
+
+    isEmpty(): boolean {
+        return this.cart.length === 0 ? true : false;
     }
 }
