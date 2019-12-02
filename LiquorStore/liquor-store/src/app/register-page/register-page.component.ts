@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
   currentState: string = 'initial';
 
   constructor(
-    private userApi: UserService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router) {
     this.userForm = this.formBuilder.group({
@@ -64,7 +64,7 @@ export class RegisterPageComponent implements OnInit {
       return;
     }
 
-    this.userApi.createUser(form).subscribe(res => {
+    this.userService.createUser(form).subscribe(res => {
       if (res['message'] === "Duplicate entry") {
         this.userForm.controls['usu_email'].setErrors({ invalid: true });
       } else {

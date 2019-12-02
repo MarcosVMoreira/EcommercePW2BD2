@@ -14,17 +14,17 @@
           </div>
         </div>
       </div>
-      <div class="text-light col-lg-2 col-sm-12 d-flex justify-content-center nome" *ngIf="this.login.isLogged">
-        Olá {{ this.login.user[0].usu_nome }}
+      <div class="text-light col-lg-2 col-sm-12 d-flex justify-content-center nome" *ngIf="this.loginService.isLogged">
+        Olá {{ this.loginService.user[0].usu_nome }}
       </div>
       <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
         <ul class="list-group list-group-horizontal text-center">
-          <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" href="#">Carrinho</a>
-          <a *ngIf="this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/usuario">Conta</a>
-          <a *ngIf="this.login.isLogged" (click)="logout()" class="list-group-item list-group-item-action"
+          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/carrinho">Carrinho</a>
+          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/usuario">Conta</a>
+          <a *ngIf="this.loginService.isLogged" (click)="logout()" class="list-group-item list-group-item-action"
             routerLink="/home">Sair</a>
-          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action" routerLink="/login">Entrar</a>
-          <a *ngIf="!this.login.isLogged" class="list-group-item list-group-item-action"
+          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/login">Entrar</a>
+          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action"
             routerLink="/register">Cadastrar</a>
         </ul>
       </div>
@@ -40,31 +40,31 @@
   <div class="collapse navbar-collapse justify-content-center" id="navbar">
     <ul class="navbar-nav mx-auto text-center">
       <li class="nav-item clientMenu">
-        <a class="nav-link border pr-4 pl-3" routerLink="/loja/cervejas">
+        <a class="nav-link border pr-4 pl-3" routerLink="/loja/cerveja">
           <img src="../../assets/icon/cerveja.png" class="icones">
           Cervejas
         </a>
       </li>
       <li class="nav-item clientMenu">
-        <a class="nav-link border pr-4 pl-3" href="#">
+        <a class="nav-link border pr-4 pl-3" routerLink="/loja/cachaca">
           <img src="../../assets/icon/cachaca.png" class="icones">
           Cachaças
         </a>
       </li>
       <li class="nav-item clientMenu">
-        <a class="nav-link border pr-4 pl-3" href="#">
+        <a class="nav-link border pr-4 pl-3" routerLink="/loja/aguardente">
           <img src="../../assets/icon/aguardente.png" class="icones">
           Aguardentes
         </a>
       </li>
       <li class="nav-item clientMenu">
-        <a class="nav-link border pr-4 pl-3" href="#">
+        <a class="nav-link border pr-4 pl-3" routerLink="/loja/pinga">
           <img src="../../assets/icon/pinga.png" class="icones">
           Pingas
         </a>
       </li>
       <li class="nav-item clientMenu">
-        <a class="nav-link border pr-4 pl-3" href="#">
+        <a class="nav-link border pr-4 pl-3" routerLink="/loja/acessorio">
           <img src="../../assets/icon/gift.png" class="icones">
           Acessórios
         </a>
@@ -73,7 +73,7 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="this.login.isAdmin">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="this.loginService.isAdmin">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin" aria-controls="admin"
     aria-expanded="false" aria-label="Alterna navegação de Admin">
     <span class="navbar-toggler-icon"></span>

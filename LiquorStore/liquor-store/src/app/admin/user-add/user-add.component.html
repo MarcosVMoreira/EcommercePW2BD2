@@ -1,4 +1,4 @@
-<div class="container p-3 d-flex justify-content-center" *ngIf="this.login.isAdmin">
+<div class="container p-3 d-flex justify-content-center" *ngIf="this.loginService.isAdmin">
   <div class="card p-3">
     <div class="body">
       <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">

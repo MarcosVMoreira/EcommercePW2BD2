@@ -79,3 +79,11 @@ exports.readProductName = function (req, res) {
         res.json(product);
     });
 };
+
+exports.readCategoryProduct = function (req, res) {
+    Product.getProductByCategory(req.params.categoria, function (err, product) {
+        if (err)
+            res.send(err);
+        res.json(product);
+    });
+};

@@ -1,4 +1,4 @@
-<div class="container p-3" [@animate]="currentState" *ngIf=this.login.isLogged>
+<div class="container p-3" [@animate]="currentState" *ngIf=this.loginService.isLogged>
   <div class="row">
     <div class="list-group col-md-3 offset-md-1 col-sm-12">
       <a [routerLink]="['/usuario']" class="list-group-item list-group-item-action">Alterar Cadastro</a>
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group col">
               <label>Email</label>
-              <input type="email" class="form-control" value="{{this.login.user[0].usu_email}}" disabled>
+              <input type="email" class="form-control" value="{{this.loginService.user[0].usu_email}}" disabled>
             </div>
           </div>
 

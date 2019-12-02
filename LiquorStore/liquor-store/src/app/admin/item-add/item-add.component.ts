@@ -17,12 +17,12 @@ export class ItemAddComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(
-    private login: LoginService,
+    private loginService: LoginService,
     private formBuilder: FormBuilder,
-    private productApi: ProductService,
+    private productService: ProductService,
     private router: Router) {
-    if (!this.login.isAdmin) {
-      this.login.redirect();
+    if (!this.loginService.isAdmin) {
+      this.loginService.redirect();
     } else {
       this.productForm = this.formBuilder.group({
         'prod_nome': ['', Validators.required],
@@ -36,7 +36,7 @@ export class ItemAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productApi.getCategories().subscribe(res => {
+    this.productService.getCategories().subscribe(res => {
       this.categories = res;
     }, err => {
       console.log(err);
@@ -63,7 +63,7 @@ export class ItemAddComponent implements OnInit {
       return;
     }
 
-    this.productApi.createProduct(form.value).subscribe(err => {
+    this.productService.createProduct(form.value).subscribe(err => {
       console.log(err);
     });
 

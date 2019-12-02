@@ -15,15 +15,15 @@ export class UserListComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private userApi: UserService,
-    private login: LoginService) {
-    if (!this.login.isAdmin) {
-      this.login.redirect();
+    private userService: UserService,
+    private loginService: LoginService) {
+    if (!this.loginService.isAdmin) {
+      this.loginService.redirect();
     }
   }
 
   ngOnInit() {
-    this.userApi.getAllUsers().subscribe(res => {
+    this.userService.getAllUsers().subscribe(res => {
       this.userList = res;
     }, err => {
       console.log(err);

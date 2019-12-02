@@ -17,17 +17,16 @@ export class ItemListComponent implements OnInit {
   p: number = 1;
 
   constructor(
-    private productApi: ProductService,
-    private router: Router,
-    private login: LoginService,
+    private productService: ProductService,
+    private loginService: LoginService,
     private sanitizer: DomSanitizer) {
-    if (!this.login.isAdmin) {
-      this.login.redirect();
+    if (!this.loginService.isAdmin) {
+      this.loginService.redirect();
     }
   }
 
   ngOnInit() {
-    this.productApi.getAllProducts().subscribe(res => {
+    this.productService.getAllProducts().subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
       }

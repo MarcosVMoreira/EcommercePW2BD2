@@ -25,6 +25,41 @@ User.createUser = function (newUser, result) {
     });
 };
 
+User.createPurchase = function (array, result) {
+    console.log(array)
+    let query = "INSERT INTO prod_usu (prod_usu_produto, prod_usu_usuario) VALUES ('" + array[1] + "', '" + array[0] + "')";
+
+    sql.query(query, function (err, res) {
+        if (err) {
+            result(null, err);
+        } else {
+            result(null, res.insertId);
+        }
+    });
+};
+
+User.findUser = function (user, result) {
+    sql.query("SELECT * FROM usuario WHERE usu_email = ? AND usu_senha = md5(?)", [user.usu_email, user.usu_senha], function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
+User.getUserByName = function (name, result) {
+    sql.query("SELECT usu_id, usu_nome, usu_perfil, usu_email, usu_telefone, usu_endereco FROM usuario WHERE MATCH (usu_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
+};
+
 User.getUserById = function (usu_id, result) {
     sql.query("SELECT * FROM usuario WHERE usu_id = ? ", usu_id, function (err, res) {
         if (err) {
@@ -83,26 +118,6 @@ User.removeUser = function (id, result) {
     });
 };
 
-User.findUser = function (user, result) {
-    sql.query("SELECT * FROM usuario WHERE usu_email = ? AND usu_senha = md5(?)", [user.usu_email, user.usu_senha], function (err, res) {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-        } else {
-            result(null, res);
-        }
-    });
-};
 
-User.getUserByName = function (name, result) {
-    sql.query("SELECT usu_id, usu_nome, usu_perfil, usu_email, usu_telefone, usu_endereco FROM usuario WHERE MATCH (usu_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-        } else {
-            result(null, res);
-        }
-    });
-}
 
 module.exports = User;

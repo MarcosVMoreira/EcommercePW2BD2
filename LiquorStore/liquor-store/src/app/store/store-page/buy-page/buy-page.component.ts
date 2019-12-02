@@ -3,15 +3,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 
-import { LoginService } from 'src/service/login.service';
 import { ProductService } from 'src/service/product.service';
 import { Product } from 'src/model/product';
 import { CartService } from 'src/service/cart.service';
 
 @Component({
-  selector: 'app-comprar-cerveja',
-  templateUrl: './comprar-cerveja.component.html',
-  styleUrls: ['./comprar-cerveja.component.css'],
+  selector: 'app-buy-page',
+  templateUrl: './buy-page.component.html',
+  styleUrls: ['./buy-page.component.css'],
   animations: [
     trigger('animate', [
       state('initial', style({
@@ -24,20 +23,19 @@ import { CartService } from 'src/service/cart.service';
     ]),
   ]
 })
-export class ComprarCervejaComponent implements OnInit {
+export class BuyPageComponent implements OnInit {
   cerveja: Product;
   precoParcelado: number;
   productId: number = this.activatedRoute.snapshot.params['id'];
   currentState: string = 'initial';
 
-  constructor(private productApi: ProductService,
-    private login: LoginService,
+  constructor(private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private cartApi: CartService) { }
+    private cartService: CartService) { }
 
   ngOnInit() {
-    this.productApi.getProductById(this.productId).subscribe(res => {
+    this.productService.getProductById(this.productId).subscribe(res => {
       res[0].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[0].prod_imagem);
       this.cerveja = res;
       this.precoParcelado = this.cerveja[0].prod_preco / 3;
@@ -53,6 +51,6 @@ export class ComprarCervejaComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartApi.addToCart(this.productId);
+    this.cartService.addToCart(this.productId);
   }
 }

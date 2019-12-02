@@ -45,7 +45,6 @@ exports.updateUser = function (req, res) {
     });
 };
 
-
 exports.deleteUser = function (req, res) {
     User.removeUser(req.params.usuarioId, function (err, user) {
         if (err)
@@ -71,5 +70,13 @@ exports.readUserName = function (req, res) {
         if (err)
             res.send(err);
         res.json(product);
+    });
+};
+
+exports.savePurchase = function (req, res) {
+    User.createPurchase([req.body[1], req.body[0]], function (err, usu_prod) {
+        if (err)
+            res.send(err);
+        res.json(usu_prod);
     });
 };

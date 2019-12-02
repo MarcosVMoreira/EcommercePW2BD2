@@ -13,10 +13,10 @@ export class UserSearchComponent implements OnInit {
   userList: User[];
 
   constructor(
-    private userApi: UserService,
-    private login: LoginService) {
-    if (!this.login.isAdmin) {
-      this.login.redirect();
+    private userService: UserService,
+    private loginService: LoginService) {
+    if (!this.loginService.isAdmin) {
+      this.loginService.redirect();
     }
   }
 
@@ -24,7 +24,7 @@ export class UserSearchComponent implements OnInit {
   }
 
   search(name) {
-    this.userApi.getUsersByName(name).subscribe(res => {
+    this.userService.getUsersByName(name).subscribe(res => {
       this.userList = res;
     }, err => {
       console.log(err);

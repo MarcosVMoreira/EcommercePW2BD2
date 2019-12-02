@@ -17,11 +17,10 @@ export class UserAddComponent implements OnInit {
   submitted: boolean = false;
 
   constructor(
-    private userApi: UserService,
+    private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private login: LoginService) {
-    if (this.login.isAdmin) {
+    private loginService: LoginService) {
+    if (this.loginService.isAdmin) {
       this.userForm = this.formBuilder.group({
         'usu_nome': ['', Validators.required],
         'usu_senha': ['', [Validators.required, Validators.minLength(6)]],
@@ -34,7 +33,7 @@ export class UserAddComponent implements OnInit {
         validator: MustMatch('usu_senha', 'usu_senhaConfirma')
       });
     } else {
-      this.login.redirect();
+      this.loginService.redirect();
     }
   }
 
@@ -52,12 +51,12 @@ export class UserAddComponent implements OnInit {
       return;
     }
 
-    this.userApi.createUser(form).subscribe(res => {
+    this.userService.createUser(form).subscribe(res => {
       if (res['message'] === "Duplicate entry") {
         this.userForm.controls['usu_email'].setErrors({ invalid: true });
       } else {
-        this.router.navigateByUrl("/login");
-        this.login.userLogout();
+        this.loginService.login();
+        this.loginService.userLogout();
       }
     }, err => {
       console.log(err);

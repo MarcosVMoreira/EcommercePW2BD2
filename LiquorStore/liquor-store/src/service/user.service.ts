@@ -23,6 +23,11 @@ export class UserService {
             .pipe(catchError(this.handleError<User>('createUser')));
     }
 
+    createPurchase(user_id, product_id): Observable<User> {
+        return this.http.post<User>(`${url}/salvarCompra`, [user_id, product_id], httpOptions)
+            .pipe(catchError(this.handleError<User>('createPurchase')));
+    }
+
     getUser(id): Observable<User> {
         return this.http.get<User>(`${url}/usuario/${id}`)
             .pipe(catchError(this.handleError<User>(`getUser id = ${id}`)));

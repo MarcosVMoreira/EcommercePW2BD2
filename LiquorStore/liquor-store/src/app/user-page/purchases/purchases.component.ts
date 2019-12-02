@@ -29,12 +29,11 @@ export class PurchasesComponent implements OnInit {
   image: SafeResourceUrl;
 
   constructor(
-    private productApi: ProductService,
-    private router: Router,
-    private login: LoginService,
+    private productService: ProductService,
+    private loginService: LoginService,
     private sanitizer: DomSanitizer) {
-    if (!this.login.isLogged) {
-      this.login.redirect();
+    if (!this.loginService.isLogged) {
+      this.loginService.redirect();
     }
   }
 
@@ -45,7 +44,7 @@ export class PurchasesComponent implements OnInit {
       });
     }
 
-    this.productApi.getUserProducts(this.login.user[0].usu_id).subscribe(res => {
+    this.productService.getUserProducts(this.loginService.user[0].usu_id).subscribe(res => {
       for (let i = 0; i < res.length; i++) {
         res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
       }
