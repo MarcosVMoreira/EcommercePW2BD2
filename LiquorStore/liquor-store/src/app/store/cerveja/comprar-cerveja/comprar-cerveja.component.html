@@ -1,17 +1,55 @@
-<div class="container">
-  <div class="row">
-    <div class="col-5">
-      <img [src]=produto.prod_imagem class="img-fluid">
+<div class="container" *ngFor="let beer of cerveja" [@animate]="currentState">
+  <div class="row p-3">
+    <div class="col-lg-6 col-md-12 col-sm-12 d-flex justify-content-center">
+      <img [src]="beer.prod_imagem" class="img-fluid img-thumbnail">
     </div>
-    <div class="col-7">
-      <div class="title">
-        {{ produto.prod_nome }}
+    <div class="col">
+      <div class="title text-center p-3">
+        <h1>{{ beer.prod_nome }}</h1>
       </div>
-      <div class="price">
-        R${{ produto.prod_preco }}
+      <span>
+        <b>Por apenas</b>
+      </span>
+      <span class="text-info h2 font-weight-bolder">
+        R${{ beer.prod_preco.toFixed(2) }}
+      </span>
+      <p>
+        <small>Ou em até 3x de <b>R${{ this.precoParcelado.toFixed(2) }}</b></small>
+      </p>
+
+      <div class="mb-3" *ngIf="beer.prod_quantidade > 0">
+        <span>
+          Este produto está
+        </span>
+        <span class="p-2 badge badge-pill badge-success text-uppercase">
+          Disponível
+        </span>
+        <div class="row d-flex justify-content-center">
+          <button class="mt-4 btn btn-success text-uppercase" routerLink="/carrinho" (click)="addToCart()">Adicionar
+            ao Carrinho</button>
+        </div>
       </div>
-      <input type="text" class="form-control" placeholder="Quantidade">
-      <button class="btn btn-dark">Adicionar ao Carrinho</button>
+
+      <div class="mb-3" *ngIf="beer.prod_quantidade < 0">
+        <span>
+          Este produto está
+        </span>
+        <span class="p-2 badge badge-pill badge-danger text-uppercase">
+          Indisponível
+        </span>
+        <div class="row d-flex justify-content-center">
+          <button class="mt-4 btn btn-danger text-uppercase" disabled>Adicionar ao Carrinho</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+            Descrição completa:
+          </h5>
+          {{ beer.prod_descricao }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

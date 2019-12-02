@@ -55,6 +55,10 @@ export class LoginService {
     this.router.navigateByUrl("/home");
   }
 
+  login() {
+    this.router.navigateByUrl("/login");
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
