@@ -4,7 +4,6 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Product } from 'src/model/product';
 import { CartService } from 'src/service/cart.service';
 import { LoginService } from 'src/service/login.service';
-import { $ } from 'protractor';
 import { ProductService } from 'src/service/product.service';
 import { UserService } from 'src/service/user.service';
 
@@ -48,7 +47,7 @@ export class CartComponent implements OnInit {
         }, 500);
       }
     } else {
-      this.loginService.redirect();
+      this.loginService.login();
     }
   }
 
