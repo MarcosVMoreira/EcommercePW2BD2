@@ -11,10 +11,10 @@
         <b>Por apenas</b>
       </span>
       <span class="text-info h2 font-weight-bolder">
-        R${{ beer.prod_preco.toFixed(2) }}
+        R${{ beer.prod_preco.toFixed(2).replace(".", ",") }}
       </span>
       <p>
-        <small>Ou em até 3x de <b>R${{ this.precoParcelado.toFixed(2) }}</b></small>
+        <small>Ou em até 3x de <b>R${{ this.precoParcelado.toFixed(2).replace(".", ",") }}</b></small>
       </p>
 
       <div class="mb-3" *ngIf="beer.prod_quantidade > 0">
