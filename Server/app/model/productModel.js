@@ -91,12 +91,12 @@ Product.getAllCategories = function (result) {
 
 Product.updateProductById = function (prod_id, productParam, result) {
     sql.query("UPDATE produto SET prod_nome = ?, prod_descricao = ?, prod_preco = ?, prod_categoria = ?, prod_quantidade = ? WHERE prod_id = ?",
-    [productParam.prod_nome, productParam.prod_descricao, productParam.prod_preco, productParam.prod_categoria, productParam.prod_quantidade, prod_id],
-    function (err, res) {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-        } else {
+        [productParam.prod_nome, productParam.prod_descricao, productParam.prod_preco, productParam.prod_categoria, productParam.prod_quantidade, prod_id],
+        function (err, res) {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+            } else {
                 result(null, res);
             }
         });
@@ -112,6 +112,4 @@ Product.removeProduct = function (prod_id, result) {
         }
     });
 };
-
-
 module.exports = Product;

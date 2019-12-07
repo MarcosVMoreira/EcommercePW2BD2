@@ -25,6 +25,7 @@ export class ProductService {
   }
 
   createProduct(product): Observable<Product> {
+    console.log(product)
     return this.http.post<Product>(`${url}/produto`, product, httpOptions)
       .pipe(catchError(this.handleError<Product>('createProduct')));
   }

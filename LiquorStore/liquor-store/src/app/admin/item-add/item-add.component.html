@@ -20,14 +20,14 @@
           </div>
           <div class="form-group col-md col-sm-12">
             <label>Categoria do Produto</label>
-            <select class="form-control" formControlName="prod_cat"
-              [ngClass]="{ 'is-invalid': submitted && form.prod_cat.errors }">
+            <select class="form-control" formControlName="prod_categoria"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_categoria.errors }">
               <option *ngFor="let category of categories" [value]="category.categoria_id">
                 {{ category.categoria }}
               </option>
             </select>
-            <div *ngIf="submitted && form.prod_cat.errors" class="invalid-feedback">
-              <div *ngIf="form.prod_cat.errors.required">Escolha uma categoria</div>
+            <div *ngIf="submitted && form.prod_categoria.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_categoria.errors.required">Escolha uma categoria</div>
             </div>
           </div>
         </div>
@@ -35,10 +35,10 @@
         <div class="row">
           <div class="form-group col">
             <label>Descrição</label>
-            <textarea class="form-control" formControlName="prod_desc" rows="3"
-              [ngClass]="{ 'is-invalid': submitted && form.prod_desc.errors }"></textarea>
-            <div *ngIf="submitted && form.prod_desc.errors" class="invalid-feedback">
-              <div *ngIf="form.prod_desc.errors.required">A descrição do produto é obrigatória</div>
+            <textarea class="form-control" formControlName="prod_descricao" rows="3"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_descricao.errors }"></textarea>
+            <div *ngIf="submitted && form.prod_descricao.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_descricao.errors.required">A descrição do produto é obrigatória</div>
             </div>
           </div>
         </div>
@@ -54,10 +54,10 @@
           </div>
           <div class="form-group col-md-2 col-sm-12">
             <label>Quantidade</label>
-            <input type="number" class="form-control" formControlName="prod_qtd"
-              [ngClass]="{ 'is-invalid': submitted && form.prod_qtd.errors }">
-            <div *ngIf="submitted && form.prod_qtd.errors" class="invalid-feedback">
-              <div *ngIf="form.prod_qtd.errors.required">A quantidade de produtos é obrigatória</div>
+            <input type="number" class="form-control" formControlName="prod_quantidade"
+              [ngClass]="{ 'is-invalid': submitted && form.prod_quantidade.errors }">
+            <div *ngIf="submitted && form.prod_quantidade.errors" class="invalid-feedback">
+              <div *ngIf="form.prod_quantidade.errors.required">A quantidade de produtos é obrigatória</div>
             </div>
           </div>
           <div class="form-group col-md col-sm-12">

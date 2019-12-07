@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { LoginService } from 'src/service/login.service';
 
 @Component({
@@ -16,5 +17,4 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.userLogout();
   }
-
 }
