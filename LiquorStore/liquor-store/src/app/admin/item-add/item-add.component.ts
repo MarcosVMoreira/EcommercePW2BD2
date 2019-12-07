@@ -26,11 +26,11 @@ export class ItemAddComponent implements OnInit {
     } else {
       this.productForm = this.formBuilder.group({
         'prod_nome': ['', Validators.required],
-        'prod_cat': ['', Validators.required],
-        'prod_desc': ['', Validators.required],
+        'prod_categoria': ['', Validators.required],
+        'prod_descricao': ['', Validators.required],
         'prod_preco': ['', Validators.required],
-        'prod_qtd': ['', Validators.required],
-        'prod_img': ''
+        'prod_quantidade': ['', Validators.required],
+        'prod_imagem': ''
       });
     }
   }
@@ -52,7 +52,7 @@ export class ItemAddComponent implements OnInit {
     var reader = new FileReader();
     reader.readAsDataURL(image);
     reader.onloadend = () => {
-      this.productForm.controls['prod_img'].setValue(reader.result);
+      this.productForm.controls['prod_imagem'].setValue(reader.result);
     }
   }
 

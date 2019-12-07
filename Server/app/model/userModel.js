@@ -117,7 +117,4 @@ User.removeUser = function (id, result) {
         }
     });
 };
-
-
-
 module.exports = User;

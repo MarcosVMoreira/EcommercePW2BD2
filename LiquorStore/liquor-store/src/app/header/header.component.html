@@ -19,11 +19,14 @@
       </div>
       <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
         <ul class="list-group list-group-horizontal text-center">
-          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/carrinho">Carrinho</a>
-          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/usuario">Conta</a>
+          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action"
+            routerLink="/carrinho">Carrinho</a>
+          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action"
+            routerLink="/usuario">Conta</a>
           <a *ngIf="this.loginService.isLogged" (click)="logout()" class="list-group-item list-group-item-action"
             routerLink="/home">Sair</a>
-          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action" routerLink="/login">Entrar</a>
+          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action"
+            routerLink="/login">Entrar</a>
           <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action"
             routerLink="/register">Cadastrar</a>
         </ul>
