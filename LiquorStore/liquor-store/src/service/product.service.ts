@@ -56,8 +56,14 @@ export class ProductService {
   }
 
   updateProduct(id, product): Observable<any> {
+    console.log("Amigo estou aqui!!")
     return this.http.put(`${url}/produto/${id}`, product, httpOptions)
       .pipe(catchError(this.handleError<Product>(`updateProduct id = ${id}`)));
+  }
+
+  deleteProduct(id): Observable<any> {
+    return this.http.delete(`${url}/produto/${id}`, httpOptions)
+      .pipe(catchError(this.handleError<Product>(`deleteProduct id = ${id}`)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

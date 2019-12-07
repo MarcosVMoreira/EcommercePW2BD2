@@ -1,1 +1,9 @@
+.button-end {
+    position: relative;
+    margin-left: 80%;
+  }
 
+.button{
+  border: none;
+  background: transparent;
+}

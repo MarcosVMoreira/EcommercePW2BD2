@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ItemAddComponent } from './admin/item-add/item-add.component';
+import { ItemEditComponent } from './admin/item-edit/item-edit.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { PurchasesComponent } from './user-page/purchases/purchases.component';
 import { ItemListComponent } from './admin/item-list/item-list.component';
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: "admin/user-list",
     component: UserListComponent,
+  },
+  {
+    path: "admin/user-edit/:prod_id",
+    component: ItemEditComponent,
   },
   {
     path: "admin/user-search",
