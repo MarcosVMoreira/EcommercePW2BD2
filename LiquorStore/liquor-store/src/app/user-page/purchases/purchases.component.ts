@@ -49,6 +49,7 @@ export class PurchasesComponent implements OnInit {
         res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
       }
       this.productList = res;
+      console.log(res)
     }, err => {
       console.log(err);
     });

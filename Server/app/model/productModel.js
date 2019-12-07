@@ -34,7 +34,7 @@ Product.getProductById = function (prod_id, result) {
 };
 
 Product.getProductByUserId = function (user_id, result) {
-    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_nome, p.prod_descricao, pc.categoria AS prod_categoria FROM produto p INNER JOIN prod_usu pu ON pu.prod_usu_produto = prod_id INNER JOIN usuario u ON u.usu_id = prod_usu_usuario INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE u.usu_id = ? ORDER BY prod_usu_id DESC", user_id, function (err, res) {
+    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem,  prod_id, p.prod_nome, p.prod_descricao, pc.categoria AS prod_categoria FROM produto p INNER JOIN prod_usu pu ON pu.prod_usu_produto = prod_id INNER JOIN usuario u ON u.usu_id = prod_usu_usuario INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE u.usu_id = ? ORDER BY prod_usu_id DESC", user_id, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
