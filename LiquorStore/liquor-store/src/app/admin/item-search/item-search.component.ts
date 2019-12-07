@@ -24,6 +24,7 @@ export class ItemSearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadProducts();
   }
 
   search(name) {
@@ -35,5 +36,27 @@ export class ItemSearchComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+  }
+
+  deleteProduct(event, id) {
+    console.log(id);
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.loadProducts();
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  
+  loadProducts() {
+    
+    this.productService.getAllProducts().subscribe(res => {
+    for (let i = 0; i < res.length; i++) {
+      res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
+    }
+    this.productList = res;
+  }, err => {
+    console.log(err);
+  });
   }
 }

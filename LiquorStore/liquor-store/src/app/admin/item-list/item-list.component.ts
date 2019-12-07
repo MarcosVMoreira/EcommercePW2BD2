@@ -6,6 +6,7 @@ import { Product } from 'src/model/product';
 import { ProductService } from 'src/service/product.service';
 import { LoginService } from 'src/service/login.service';
 
+
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
@@ -26,13 +27,31 @@ export class ItemListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.getAllProducts().subscribe(res => {
-      for (let i = 0; i < res.length; i++) {
-        res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
-      }
-      this.productList = res;
+    this.loadProducts();
+  }
+
+
+  deleteProduct(event, id) {
+    console.log(id);
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.loadProducts();
     }, err => {
       console.log(err);
     });
   }
+
+  
+  loadProducts() {
+    
+    this.productService.getAllProducts().subscribe(res => {
+    for (let i = 0; i < res.length; i++) {
+      res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[i].prod_imagem);
+    }
+    this.productList = res;
+  }, err => {
+    console.log(err);
+  });
+  }
 }
+
+
