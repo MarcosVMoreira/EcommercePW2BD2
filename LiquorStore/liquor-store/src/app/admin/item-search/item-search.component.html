@@ -1,36 +1,53 @@
-<div class="container p-3" *ngIf=this.loginService.isAdmin>
+<div class="container p-3" *ngIf="this.loginService.isAdmin">
   <div class="row">
     <div class="card p-3 col-md-10 col-sm-12 offset-md-1 mb-2">
       <div class="form-inline">
-        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Nome do Produto" #newSearch>
-        <button class="btn btn-dark mb-2" (click)="search(newSearch.value)">Procurar</button>
+        <input
+          type="text"
+          class="form-control mb-2 mr-sm-2"
+          placeholder="Nome do Produto"
+          #newSearch
+        />
+        <button class="btn btn-dark mb-2" (click)="search(newSearch.value)">
+          Procurar
+        </button>
       </div>
     </div>
 
     <div class="card primary-card p-3 col-md-10 col-sm-12 offset-md-1">
-      <h2> Produtos encontrados: </h2>
+      <h2>Produtos encontrados:</h2>
       <div class="card bg-light mb-3" *ngFor="let product of productList">
         <div class="row">
           <div class="col ml-3 p-3 d-flex align-items-center">
-            <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
+            <img
+              [src]="product.prod_imagem"
+              class="card-img img img-thumbnail"
+            />
           </div>
           <div class="col-md-8">
             <div class="card-body">
               <h3 class="card-title text-center">{{ product.prod_nome }}</h3>
               <h4 class="card-text text-center">{{ product.categoria }}</h4>
-              <h4 class="card-text text-center">R${{ product.prod_preco }} cada unidade, {{ product.prod_quantidade }}
-                unidades em
-                estoque.
+              <h4 class="card-text text-center">
+                R${{ product.prod_preco }} cada unidade,
+                {{ product.prod_quantidade }}
+                unidades em estoque.
               </h4>
               <p class="card-text text-justify">{{ product.prod_descricao }}</p>
               <div class="button-end">
-                <button class ="button" routerLink="/admin/user-edit/{{product.prod_id}}">
-                  <i class="material-icons">edit</i>
+                <button
+                  class="button"
+                  routerLink="/admin/user-edit/{{ product.prod_id }}"
+                >
+                  <i class="material-icons editHover">edit</i>
                 </button>
-                <button class ="button" (click)="deleteProduct($event, product.prod_id)">
-                  <i class="material-icons">delete</i>
+                <button
+                  class="button"
+                  (click)="deleteProduct($event, product.prod_id)"
+                >
+                  <i class="material-icons deleteHover">delete</i>
                 </button>
-              </div>  
+              </div>
             </div>
           </div>
         </div>

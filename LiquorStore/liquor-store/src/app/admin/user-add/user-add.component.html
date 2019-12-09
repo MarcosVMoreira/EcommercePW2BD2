@@ -12,7 +12,7 @@
             <select class="form-control" formControlName="usu_perfil"
               [ngClass]="{ 'is-invalid': submitted && form.usu_perfil.errors }">
               <option>Cliente</option>
-              <option>Administrador</option>
+              <option>Admin</option>
             </select>
             <div *ngIf="submitted && form.usu_perfil.errors" class="invalid-feedback">
               <div *ngIf="form.usu_perfil.errors.required">Selecione o tipo de usuário</div>

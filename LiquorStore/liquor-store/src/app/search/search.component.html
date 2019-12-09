@@ -1,0 +1,34 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="card p-3 col-md-10 col-sm-12 offset-md-1 mb-2">
+      <div class="form-inline">
+        <input
+          type="text"
+          class="form-control mb-2 mr-sm-2"
+          placeholder="Nome do Produto"
+          #newSearch
+        />
+        <button class="btn btn-dark mb-2" (click)="search(newSearch.value)">
+          Procurar
+        </button>
+      </div>
+    </div>
+
+    <div class="card primary-card p-3 col-md-10 col-sm-12 offset-md-1">
+      <h1> Produtos encontrados: </h1>
+      <div class="card bg-light mb-3" *ngFor="let product of productList">
+        <div class="row no-gutters">
+          <div class="col-md-4 p-2">
+            <img [src]="product.prod_imagem" class="card-img img img-thumbnail" />
+          </div>
+          <div class="col-md-8 card-body justify-content-center d-flex flex-column">
+            <h3 class="card-title text-center">{{ product.prod_nome }}</h3>
+            <h5 class="card-title text-justify p-3">{{ product.prod_descricao }}</h5>
+            <button class="mt-auto btn btn-dark mr-5 ml-5"><a class="btnBuy h3" routerLink='/loja/{{product.prod_categoria}}/{{product.prod_id}}'>Comprar</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>

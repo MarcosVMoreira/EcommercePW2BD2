@@ -18,10 +18,10 @@
               <p class="card-text text-justify">{{ product.prod_descricao }}</p>
               <div class="button-end">
                 <button class ="button" routerLink="/admin/user-edit/{{product.prod_id}}">
-                  <i class="material-icons">edit</i>
+                  <i class="material-icons editHover">edit</i>
                 </button>
                 <button class ="button" (click)="deleteProduct($event, product.prod_id)">
-                  <i class="material-icons">delete</i>
+                  <i class="material-icons deleteHover">delete</i>
                 </button>
               </div>  
             </div>

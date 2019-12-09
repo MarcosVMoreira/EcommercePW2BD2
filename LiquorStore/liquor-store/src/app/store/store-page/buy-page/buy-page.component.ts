@@ -25,7 +25,6 @@ import { CartService } from 'src/service/cart.service';
 })
 export class BuyPageComponent implements OnInit {
   cerveja: Product;
-  precoParcelado: number;
   productId: number = this.activatedRoute.snapshot.params['id'];
   currentState: string = 'initial';
 
@@ -38,7 +37,6 @@ export class BuyPageComponent implements OnInit {
     this.productService.getProductById(this.productId).subscribe(res => {
       res[0].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(res[0].prod_imagem);
       this.cerveja = res;
-      this.precoParcelado = this.cerveja[0].prod_preco / 3;
 
       if (this.currentState = "initial") {
         setTimeout(() => {

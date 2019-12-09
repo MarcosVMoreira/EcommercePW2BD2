@@ -4,25 +4,40 @@ import { SafeResourceUrl, DomSanitizer } from "@angular/platform-browser";
 import { Product } from "src/model/product";
 import { ProductService } from "src/service/product.service";
 import { LoginService } from "src/service/login.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-  selector: "app-item-search",
-  templateUrl: "./item-search.component.html",
-  styleUrls: ["./item-search.component.css"]
+  selector: "app-search",
+  templateUrl: "./search.component.html",
+  styleUrls: ["./search.component.css"]
 })
-export class ItemSearchComponent {
+export class SearchComponent implements OnInit {
   productList: Product[];
   image: SafeResourceUrl;
   name: string;
 
   constructor(
     private productService: ProductService,
-    private loginService: LoginService,
-    private sanitizer: DomSanitizer
-  ) {
-    if (!this.loginService.isAdmin) {
-      this.loginService.redirect();
-    }
+    private sanitizer: DomSanitizer,
+    private route: ActivatedRoute,
+  ) {}
+
+  ngOnInit(): void {
+    this.name = this.route.snapshot.params["nomeProduto"];
+    this.productService.getProductsByName(this.name).subscribe(
+      res => {
+        for (let i = 0; i < res.length; i++) {
+          res[i].prod_imagem = this.sanitizer.bypassSecurityTrustUrl(
+            res[i].prod_imagem
+          );
+        }
+        this.productList = res;
+        console.log(res)
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   search(name) {
@@ -35,18 +50,6 @@ export class ItemSearchComponent {
           );
         }
         this.productList = res;
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
-  deleteProduct(event, id) {
-    console.log(id);
-    this.productService.deleteProduct(id).subscribe(
-      () => {
-        this.search(this.name);
       },
       err => {
         console.log(err);

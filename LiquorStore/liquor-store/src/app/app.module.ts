@@ -25,6 +25,7 @@ import { StorePageComponent } from './store/store-page/store-page.component';
 import { BuyPageComponent } from './store/store-page/buy-page/buy-page.component';
 import { CartComponent } from './cart/cart.component';
 import { ItemEditComponent } from './admin/item-edit/item-edit.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ItemEditComponent } from './admin/item-edit/item-edit.component';
     BuyPageComponent,
     CartComponent,
     ItemEditComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
