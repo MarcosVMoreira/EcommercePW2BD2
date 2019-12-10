@@ -26,7 +26,6 @@ User.createUser = function (newUser, result) {
 };
 
 User.createPurchase = function (array, result) {
-    console.log(array)
     let query = "INSERT INTO prod_usu (prod_usu_produto, prod_usu_usuario) VALUES ('" + array[1] + "', '" + array[0] + "')";
 
     sql.query(query, function (err, res) {

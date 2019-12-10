@@ -20,6 +20,9 @@ module.exports = function (app) {
         .put(product.updateProduct)
         .delete(product.deleteProduct);
 
+    app.route('/produtoQtd/:produtoId')
+        .put(product.updateProductQuantity);
+
     app.route('/usuario/produto/:usuarioId')
         .get(product.readUserProduct);
     app.route('/produto/categoria/:categoria')

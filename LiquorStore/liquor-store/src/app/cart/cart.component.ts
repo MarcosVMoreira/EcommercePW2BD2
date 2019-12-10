@@ -78,7 +78,7 @@ export class CartComponent implements OnInit {
         this.error = false;
         product.prod_quantidade -= product.prod_carrinho;
 
-        this.productService.updateProduct(product.prod_id, product).subscribe(() => {
+        this.productService.updateProductQuantity(product.prod_id, product).subscribe(() => {
           this.loginService.redirect();
           this.cartService.reset();
         }, err => {

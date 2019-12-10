@@ -60,6 +60,11 @@ export class ProductService {
       .pipe(catchError(this.handleError<Product>(`updateProduct id = ${id}`)));
   }
 
+  updateProductQuantity(id, product): Observable<any> {
+    return this.http.put(`${url}/produtoQtd/${id}`, product, httpOptions)
+      .pipe(catchError(this.handleError<Product>(`updateProductQuantity id = ${id}`)));
+  }
+
   deleteProduct(id): Observable<any> {
     return this.http.delete(`${url}/produto/${id}`, httpOptions)
       .pipe(catchError(this.handleError<Product>(`deleteProduct id = ${id}`)));

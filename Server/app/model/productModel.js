@@ -102,6 +102,18 @@ Product.updateProductById = function (prod_id, productParam, result) {
         });
 };
 
+Product.updateQuantity = function (prod_id, productParam, result) {
+    sql.query("UPDATE produto SET prod_quantidade = ? WHERE prod_id = ?", [productParam.prod_quantidade, prod_id],
+        function (err, res) {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+            } else {
+                result(null, res);
+            }
+        });
+};
+
 Product.removeProduct = function (prod_id, result) {
     sql.query("DELETE FROM produto WHERE prod_id = ?", [prod_id], function (err, res) {
         if (err) {

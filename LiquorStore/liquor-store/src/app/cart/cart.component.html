@@ -26,7 +26,7 @@
             <td> {{ product.prod_nome }} </td>
             <td><b> R${{ product.prod_preco.toFixed(2).replace('.', ',') }} </b></td>
             <td>
-              <button class="btn btn-secondary btn-sm" (click)="decrease(i)">-</button>
+              <button [disabled]="this.productList[i].prod_carrinho == 1" class="btn btn-secondary btn-sm" (click)="decrease(i)">-</button>
               {{ product.prod_carrinho }}
               <button class="btn btn-secondary btn-sm" (click)="increase(i)">+</button>
             </td>

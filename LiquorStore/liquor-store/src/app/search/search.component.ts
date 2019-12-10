@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit {
     private productService: ProductService,
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class SearchComponent implements OnInit {
           );
         }
         this.productList = res;
-        console.log(res)
+        console.log(res);
       },
       err => {
         console.log(err);
@@ -41,6 +42,7 @@ export class SearchComponent implements OnInit {
   }
 
   search(name) {
+    this.router.navigateByUrl(`/busca/${name}`);
     this.name = name;
     this.productService.getProductsByName(name).subscribe(
       res => {

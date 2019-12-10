@@ -45,6 +45,15 @@ exports.updateProduct = function (req, res) {
     });
 };
 
+exports.updateProductQuantity = function (req, res) {
+    var product = new Product(req.body);
+    Product.updateQuantity(req.params.produtoId, product, function (err, product) {
+        if (err)
+            res.send(err);
+        res.json(product);
+    });
+};
+
 
 exports.deleteProduct = function (req, res) {
     Product.removeProduct(req.params.produtoId, function (err, product) {
