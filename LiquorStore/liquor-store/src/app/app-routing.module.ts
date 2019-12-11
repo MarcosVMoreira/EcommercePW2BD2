@@ -28,10 +28,6 @@ const routes: Routes = [
     component: SearchComponent
   },
   {
-    path: "busca",
-    component: UserSearchComponent
-  },
-  {
     path: "register",
     component: RegisterPageComponent
   },
