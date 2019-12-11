@@ -64,6 +64,11 @@
   height: 50px !important;
 }
 
+.btnSearch {
+  border: 1 solid black;
+  border-radius: 5px;
+}
+
 @media (min-width: 768px) and (max-width: 999px) {
   .nome {
     margin-bottom: 2rem;

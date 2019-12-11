@@ -46,7 +46,7 @@ Product.getProductByUserId = function (user_id, result) {
 
 
 Product.getProductByName = function (name, result) {
-    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, prod_preco, pc.categoria, p.prod_quantidade FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE MATCH (p.prod_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
+    sql.query("SELECT CONVERT(p.prod_imagem USING utf8) AS prod_imagem, p.prod_id, p.prod_nome, p.prod_descricao, prod_preco, pc.categoria, p.prod_quantidade, pc.categoria_controle AS prod_categoria FROM produto p INNER JOIN produto_categoria pc ON p.prod_categoria = pc.categoria_id WHERE MATCH (p.prod_nome) AGAINST (? IN BOOLEAN MODE)", name, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -90,8 +90,8 @@ Product.getAllCategories = function (result) {
 };
 
 Product.updateProductById = function (prod_id, productParam, result) {
-    sql.query("UPDATE produto SET prod_nome = ?, prod_descricao = ?, prod_preco = ?, prod_categoria = ?, prod_quantidade = ? WHERE prod_id = ?",
-        [productParam.prod_nome, productParam.prod_descricao, productParam.prod_preco, productParam.prod_categoria, productParam.prod_quantidade, prod_id],
+    sql.query("UPDATE produto SET prod_nome = ?, prod_descricao = ?, prod_preco = ?, prod_categoria = ?, prod_quantidade = ?, prod_imagem = ? WHERE prod_id = ?",
+        [productParam.prod_nome, productParam.prod_descricao, productParam.prod_preco, productParam.prod_categoria, productParam.prod_quantidade, productParam.prod_imagem, prod_id],
         function (err, res) {
             if (err) {
                 console.log("error: ", err);

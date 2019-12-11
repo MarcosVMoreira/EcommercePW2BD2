@@ -3,32 +3,65 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-lg-2 col-sm-4 d-flex justify-content-center">
         <a routerLink="/home">
-          <img src="../../assets/img/logo.png" class="logo">
+          <img src="../../assets/img/logo.png" class="logo" />
         </a>
       </div>
       <div class="col-lg-4 col-sm-8 d-flex justify-content-center">
         <div class="input-group search">
-          <input type="text" class="form-control" placeholder="Buscar">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Buscar"
+            #newSearch
+          />
           <div class="input-group-append">
-            <button class="btn btn-secondary fa fa-search" type="button"></button>
+            <button
+              class="btn btn-secondary fa fa-search"
+              (click)="search(newSearch.value)"
+              [disabled]="getSection()"
+            ></button>
           </div>
         </div>
       </div>
-      <div class="text-light col-lg-2 col-sm-12 d-flex justify-content-center nome" *ngIf="this.loginService.isLogged">
+      <div
+        class="text-light col-lg-2 col-sm-12 d-flex justify-content-center nome"
+        *ngIf="this.loginService.isLogged"
+      >
         Olá {{ this.loginService.user[0].usu_nome }}
       </div>
       <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
         <ul class="list-group list-group-horizontal text-center">
-          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action"
-            routerLink="/carrinho">Carrinho</a>
-          <a *ngIf="this.loginService.isLogged" class="list-group-item list-group-item-action"
-            routerLink="/usuario">Conta</a>
-          <a *ngIf="this.loginService.isLogged" (click)="logout()" class="list-group-item list-group-item-action"
-            routerLink="/home">Sair</a>
-          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action"
-            routerLink="/login">Entrar</a>
-          <a *ngIf="!this.loginService.isLogged" class="list-group-item list-group-item-action"
-            routerLink="/register">Cadastrar</a>
+          <a
+            *ngIf="this.loginService.isLogged"
+            class="list-group-item list-group-item-action"
+            routerLink="/carrinho"
+            >Carrinho</a
+          >
+          <a
+            *ngIf="this.loginService.isLogged"
+            class="list-group-item list-group-item-action"
+            routerLink="/usuario"
+            >Conta</a
+          >
+          <a
+            *ngIf="this.loginService.isLogged"
+            (click)="logout()"
+            class="list-group-item list-group-item-action"
+            routerLink="/home"
+            >Sair</a
+          >
+          <a
+            *ngIf="!this.loginService.isLogged"
+            class="list-group-item list-group-item-action"
+            routerLink="/login"
+            >Entrar</a
+          >
+          <a
+            *ngIf="!this.loginService.isLogged"
+            class="list-group-item list-group-item-action"
+            routerLink="/register"
+            >Cadastrar</a
+          >
         </ul>
       </div>
     </div>
@@ -36,39 +69,46 @@
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-    aria-expanded="false" aria-label="Alterna navegação">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbar"
+    aria-controls="navbar"
+    aria-expanded="false"
+    aria-label="Alterna navegação"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-center" id="navbar">
     <ul class="navbar-nav mx-auto text-center">
       <li class="nav-item clientMenu">
         <a class="nav-link border pr-4 pl-3" routerLink="/loja/cerveja">
-          <img src="../../assets/icon/cerveja.png" class="icones">
+          <img src="../../assets/icon/cerveja.png" class="icones" />
           Cervejas
         </a>
       </li>
       <li class="nav-item clientMenu">
         <a class="nav-link border pr-4 pl-3" routerLink="/loja/cachaca">
-          <img src="../../assets/icon/cachaca.png" class="icones">
+          <img src="../../assets/icon/cachaca.png" class="icones" />
           Cachaças
         </a>
       </li>
       <li class="nav-item clientMenu">
         <a class="nav-link border pr-4 pl-3" routerLink="/loja/aguardente">
-          <img src="../../assets/icon/aguardente.png" class="icones">
+          <img src="../../assets/icon/aguardente.png" class="icones" />
           Aguardentes
         </a>
       </li>
       <li class="nav-item clientMenu">
         <a class="nav-link border pr-4 pl-3" routerLink="/loja/vinho">
-          <img src="../../assets/icon/vinho.png" class="icones">
+          <img src="../../assets/icon/vinho.png" class="icones" />
           Vinhos
         </a>
       </li>
       <li class="nav-item clientMenu">
         <a class="nav-link border pr-4 pl-3" routerLink="/loja/acessorio">
-          <img src="../../assets/icon/gift.png" class="icones">
+          <img src="../../assets/icon/gift.png" class="icones" />
           Acessórios
         </a>
       </li>
@@ -76,9 +116,19 @@
   </div>
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="this.loginService.isAdmin">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin" aria-controls="admin"
-    aria-expanded="false" aria-label="Alterna navegação de Admin">
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light"
+  *ngIf="this.loginService.isAdmin"
+>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#admin"
+    aria-controls="admin"
+    aria-expanded="false"
+    aria-label="Alterna navegação de Admin"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="admin">
@@ -99,7 +149,12 @@
         </a>
       </li>
       <a class="nav-item">
-        <img src="../../assets/icon/admin.png" width="45px" height="45px" class="img-fluid">
+        <img
+          src="../../assets/icon/admin.png"
+          width="45px"
+          height="45px"
+          class="img-fluid"
+        />
       </a>
       <li class="nav-item">
         <a class="nav-link" routerLink="/admin/user-add">

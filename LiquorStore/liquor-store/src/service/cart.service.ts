@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { Product } from 'src/model/product';
 import { ProductService } from './product.service';
-import { LoginService } from './login.service';
 
 @Injectable({
     providedIn: 'root'

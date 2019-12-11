@@ -14,7 +14,7 @@
         <div class="mt-auto">
           <h5 class="card-text text-success font-weight-bold">R${{ product.prod_preco.toFixed(2).replace(".", ",") }}
           </h5>
-          <h5 class="card-text">ou até 3x de R${{ precoParcelado[i].toFixed(2).replace(".", ",") }}</h5>
+          <h5 class="card-text">ou até 3x de R${{ (product.prod_preco/3).toFixed(2).replace(".", ",") }}</h5>
           <button class="buy btn btn-outline-success font-weight-bolder text-uppercase"
             routerLink="/loja/{{category}}/{{ product.prod_id }}">Comprar</button>
         </div>

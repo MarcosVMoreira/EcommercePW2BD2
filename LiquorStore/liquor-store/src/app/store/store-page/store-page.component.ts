@@ -26,7 +26,6 @@ import { ProductService } from 'src/service/product.service';
 export class StorePageComponent implements OnInit {
   p: number = 1;
   productList: Product[];
-  precoParcelado: number[] = [];
   currentState: string = 'initial';
   category: string;
   categoryTitle: string;
@@ -57,10 +56,6 @@ export class StorePageComponent implements OnInit {
 
       this.productList = res;
       this.categoryTitle = res[0].prod_categoria;
-
-      for (let i = 0; i < this.productList.length; i++) {
-        this.precoParcelado.push(this.productList[i].prod_preco / 3);
-      }
 
       if (this.currentState = "initial") {
         setTimeout(() => {

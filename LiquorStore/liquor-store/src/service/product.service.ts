@@ -56,7 +56,6 @@ export class ProductService {
   }
 
   updateProduct(id, product): Observable<any> {
-    console.log("Amigo estou aqui!!")
     return this.http.put(`${url}/produto/${id}`, product, httpOptions)
       .pipe(catchError(this.handleError<Product>(`updateProduct id = ${id}`)));
   }

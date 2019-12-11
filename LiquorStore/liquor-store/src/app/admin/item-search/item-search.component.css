@@ -7,3 +7,19 @@
   border: none;
   background: transparent;
 }
+
+.editHover {
+  transition: 0.5s;
+}
+
+.deleteHover {
+  transition: 0.5s;
+}
+
+.editHover:hover {
+  color: green;
+}
+
+.deleteHover:hover {
+  color: red;
+}
